@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -437,3 +436,107 @@ initOverview();
 </script>
 </body>
 </html>
+<script>
+// ── REAL DATA FETCHING ──────────────────────────────────────────────
+let currentPeriod = '30d';
+
+async function fetchRealData(period) {
+  currentPeriod = period;
+  try {
+    const [analytics, search] = await Promise.all([
+      fetch(`/api/analytics?period=${period}`).then(r => r.json()),
+      fetch(`/api/search?period=${period}`).then(r => r.json()),
+    ]);
+
+    // Update KPI cards
+    document.querySelectorAll('.kpi-val')[0].textContent = analytics.sessions?.toLocaleString() || '—';
+    document.querySelectorAll('.kpi-val')[1].textContent = analytics.conversions?.toLocaleString() || '—';
+    document.querySelectorAll('.kpi-val')[2].textContent = analytics.avgDuration || '—';
+    document.querySelectorAll('.kpi-val')[3].textContent = analytics.bounceRate || '—';
+
+    // Update top pages table
+    if (analytics.topPages?.length) {
+      const tbody = document.querySelector('#pagesTable') || document.querySelector('tbody');
+      if (tbody) {
+        tbody.innerHTML = analytics.topPages.map(p => `
+          <tr>
+            <td>${p.page}</td>
+            <td class="mono">${p.views?.toLocaleString()}</td>
+            <td class="mono">${p.convRate}</td>
+            <td><span class="pill pill-ok">${p.source || 'Organic'}</span></td>
+          </tr>`).join('');
+      }
+    }
+
+    // Update sessions chart with real data
+    if (analytics.trend?.length) {
+      const labels = analytics.trend.map(d => d.date.replace(/(\d{4})(\d{2})(\d{2})/, '$2/$3'));
+      const sessionData = analytics.trend.map(d => d.sessions);
+      const convData = analytics.trend.map(d => d.conversions);
+      if (charts['sessionsChart']) {
+        charts['sessionsChart'].data.labels = labels;
+        charts['sessionsChart'].data.datasets[0].data = sessionData;
+        charts['sessionsChart'].data.datasets[1].data = convData;
+        charts['sessionsChart'].update();
+      }
+    }
+
+    // Update Search Console keyword table
+    if (search.keywords?.length) {
+      const kwBody = document.getElementById('kwBody');
+      if (kwBody) {
+        kwBody.innerHTML = search.keywords.map(k => `
+          <tr>
+            <td>${k.keyword}</td>
+            <td class="mono">${k.clicks?.toLocaleString()}</td>
+            <td class="mono">${k.impressions?.toLocaleString()}</td>
+            <td class="mono">${k.position}</td>
+          </tr>`).join('');
+      }
+    }
+
+    // Update long-tail table
+    if (search.longTail?.length) {
+      const ltTable = document.querySelector('#ltTable');
+      if (ltTable) {
+        ltTable.innerHTML = search.longTail.map(k => `
+          <tr>
+            <td>${k.keyword}</td>
+            <td class="mono">${k.clicks}</td>
+            <td class="mono">${k.ctr}</td>
+          </tr>`).join('');
+      }
+    }
+
+    // Try Ads (optional - may not be set up yet)
+    try {
+      const ads = await fetch(`/api/ads?period=${period}`).then(r => r.json());
+      if (ads.summary) {
+        const adKpis = document.querySelectorAll('#sec-ads .kpi-val');
+        if (adKpis[0]) adKpis[0].textContent = ads.summary.totalSpend;
+        if (adKpis[1]) adKpis[1].textContent = ads.summary.totalImpressions?.toLocaleString();
+        if (adKpis[2]) adKpis[2].textContent = ads.summary.totalClicks?.toLocaleString();
+        if (adKpis[3]) adKpis[3].textContent = ads.summary.avgCpc;
+      }
+    } catch(e) {
+      console.log('Ads not connected yet:', e.message);
+    }
+
+  } catch(err) {
+    console.error('API fetch error:', err);
+  }
+}
+
+// Override setTime to also fetch real data
+const _origSetTime = window.setTime;
+window.setTime = function(btn) {
+  if (_origSetTime) _origSetTime(btn);
+  const period = btn.textContent.trim();
+  fetchRealData(period);
+};
+
+// Auto-fetch on load
+window.addEventListener('load', () => {
+  fetchRealData('30d');
+});
+</script>
