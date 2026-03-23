@@ -8,8 +8,8 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --v-dark: #190523; --v-primary: #50145A; --v-medium: #7742A8;
-  --v-pop: #B978F5; --v-light: #CC99FF; --v-lighter: #DCBEFA; --v-lightest: #F0E8FF;
+  --v-dark: #190523; --v-primary: #50145A; --v-medium: #7742A8; --v-pop: #B978F5;
+  --v-light: #CC99FF; --v-lighter: #DCBEFA; --v-lightest: #F0E8FF;
   --v-green: #00B45A; --v-red: #D93025; --v-red-dim: rgba(217,48,37,0.1);
   --c-bg: #F7F7F8; --c-surface: #FFFFFF; --c-surface2: #F3F3F5;
   --c-border: rgba(0,0,0,0.08); --c-border2: rgba(0,0,0,0.15);
@@ -18,36 +18,24 @@
   --mono: 'SF Mono', 'Fira Code', monospace;
 }
 body { font-family: var(--font); background: var(--c-bg); color: var(--c-text); font-size: 13px; min-height: 100vh; }
-
-.topbar {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 10px 24px; border-bottom: 0.5px solid var(--c-border);
-  background: var(--c-surface); position: sticky; top: 0; z-index: 100;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-}
+.topbar { display: flex; align-items: center; justify-content: space-between; padding: 10px 24px; border-bottom: 0.5px solid var(--c-border); background: var(--c-surface); position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
 .brand { display: flex; flex-direction: column; line-height: 1.2; }
 .brand-main { font-size: 17px; font-weight: 700; letter-spacing: -0.5px; }
 .brand-main .view { color: var(--v-primary); }
 .brand-main .dash { color: var(--v-medium); }
 .brand-main .ai { color: var(--v-pop); }
 .brand-sub { font-size: 10px; color: var(--c-hint); margin-top: 1px; }
-
 .nav { display: flex; gap: 2px; }
 .nav-btn { background: none; border: none; cursor: pointer; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-family: var(--font); color: var(--c-muted); font-weight: 500; transition: all 0.15s; }
 .nav-btn:hover { background: var(--c-surface2); color: var(--c-text); }
 .nav-btn.active { background: var(--v-lightest); color: var(--v-primary); }
-
 .time-sel { display: flex; gap: 2px; background: var(--c-surface2); border-radius: 8px; padding: 3px; }
 .time-btn { background: none; border: none; cursor: pointer; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-family: var(--font); color: var(--c-muted); font-weight: 500; }
 .time-btn.active { background: var(--v-primary); color: #fff; }
-
 .export-btn { background: none; border: 0.5px solid var(--c-border2); border-radius: 6px; padding: 5px 12px; font-size: 11px; cursor: pointer; color: var(--c-muted); font-family: var(--font); font-weight: 500; }
 .export-btn:hover { background: var(--v-lightest); color: var(--v-primary); }
-
 .content { padding: 20px 24px; display: flex; flex-direction: column; gap: 20px; max-width: 1400px; margin: 0 auto; }
-
 .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; color: var(--v-medium); text-transform: uppercase; margin-bottom: 10px; }
-
 .kpi-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; }
 .kpi-card { background: var(--c-surface); border: 0.5px solid var(--c-border); border-radius: 10px; padding: 14px 16px; border-top: 2px solid var(--v-pop); }
 .kpi-label { font-size: 11px; color: var(--c-muted); font-weight: 500; margin-bottom: 6px; }
@@ -55,36 +43,30 @@ body { font-family: var(--font); background: var(--c-bg); color: var(--c-text); 
 .kpi-sub { font-size: 11px; color: var(--c-muted); margin-top: 4px; }
 .up { color: var(--v-green); font-weight: 500; }
 .down { color: var(--v-red); font-weight: 500; }
-
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .one-two { display: grid; grid-template-columns: 1fr 1.6fr; gap: 14px; }
 .card { background: var(--c-surface); border: 0.5px solid var(--c-border); border-radius: 12px; padding: 16px; }
 .card-title { font-size: 13px; font-weight: 600; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; color: var(--c-text); }
-
 .chart-wrap { position: relative; width: 100%; height: 190px; }
 .chart-wrap-lg { position: relative; width: 100%; height: 220px; }
 .chart-wrap-md { position: relative; width: 100%; height: 160px; }
-
 table { width: 100%; border-collapse: collapse; }
 th { font-size: 10px; font-weight: 600; color: var(--c-hint); text-transform: uppercase; letter-spacing: 0.05em; text-align: left; padding: 0 8px 7px; border-bottom: 0.5px solid var(--c-border); }
 td { padding: 8px; font-size: 12px; border-bottom: 0.5px solid var(--c-border); color: var(--c-text); }
 tr:last-child td { border-bottom: none; }
 td.mono { font-family: var(--mono); font-size: 11px; }
-
 .pill { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 600; }
 .pill-high { background: var(--v-red-dim); color: var(--v-red); }
 .pill-med { background: rgba(119,66,168,0.12); color: var(--v-medium); }
 .pill-low { background: var(--v-lightest); color: var(--v-primary); }
 .pill-ok { background: var(--v-lightest); color: var(--v-primary); }
 .pill-brand { background: rgba(185,120,245,0.15); color: var(--v-medium); }
-
 .platform-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; }
 .platform-card { background: var(--c-surface); border: 0.5px solid var(--c-border); border-radius: 10px; padding: 12px; cursor: pointer; transition: border-color 0.15s; }
 .platform-card:hover { border-color: var(--v-pop); }
 .platform-name { font-size: 11px; font-weight: 600; color: var(--c-muted); margin-bottom: 6px; }
 .platform-val { font-size: 18px; font-weight: 700; letter-spacing: -0.4px; color: var(--c-text); }
 .platform-eng { font-size: 11px; margin-top: 3px; }
-
 .seo-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid var(--c-border); }
 .seo-row:last-child { border-bottom: none; }
 .seo-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; font-weight: 700; }
@@ -94,20 +76,17 @@ td.mono { font-family: var(--mono); font-size: 11px; }
 .seo-info { flex: 1; }
 .seo-page { font-size: 12px; font-weight: 500; color: var(--c-text); }
 .seo-desc { font-size: 11px; color: var(--c-muted); margin-top: 1px; }
-
 .funnel-wrap { display: flex; flex-direction: column; gap: 7px; }
 .funnel-label { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 3px; color: var(--c-text); }
 .funnel-bar-bg { background: var(--c-surface2); border-radius: 3px; height: 22px; overflow: hidden; }
 .funnel-bar-fill { height: 22px; border-radius: 3px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 600; color: #fff; }
-
 .legend-row { display: flex; flex-wrap: wrap; gap: 12px; }
 .leg-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--c-muted); }
 .leg-sq { width: 9px; height: 9px; border-radius: 2px; }
-
 .tabs { display: flex; gap: 3px; }
 .tab-btn { background: none; border: none; cursor: pointer; padding: 4px 9px; border-radius: 6px; font-size: 11px; font-family: var(--font); color: var(--c-muted); font-weight: 500; }
 .tab-btn.active { background: var(--v-lightest); color: var(--v-primary); }
-
+.data-badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 600; background: rgba(0,180,90,0.12); color: var(--v-green); }
 @media (max-width: 768px) {
   .kpi-grid { grid-template-columns: repeat(2, 1fr); }
   .two-col, .one-two { grid-template-columns: 1fr; }
@@ -117,7 +96,6 @@ td.mono { font-family: var(--mono); font-size: 11px; }
 </style>
 </head>
 <body>
-
 <div class="topbar">
   <div style="display:flex;align-items:center;gap:16px;">
     <div class="brand">
@@ -143,183 +121,195 @@ td.mono { font-family: var(--mono); font-size: 11px; }
 </div>
 
 <div class="content">
+  <!-- OVERVIEW -->
+  <div id="sec-overview">
+    <div class="section-label">Website Performance</div>
+    <div class="kpi-grid" style="margin-bottom:16px;">
+      <div class="kpi-card"><div class="kpi-label">Total sessions</div><div class="kpi-val" id="kpi-sessions">—</div><div class="kpi-sub" id="kpi-sessions-sub">Loading…</div></div>
+      <div class="kpi-card"><div class="kpi-label">Conversions</div><div class="kpi-val" id="kpi-conversions">—</div><div class="kpi-sub">vs prev period</div></div>
+      <div class="kpi-card"><div class="kpi-label">Avg. session duration</div><div class="kpi-val" id="kpi-duration">—</div><div class="kpi-sub">avg per session</div></div>
+      <div class="kpi-card"><div class="kpi-label">Bounce rate</div><div class="kpi-val" id="kpi-bounce">—</div><div class="kpi-sub">of all sessions</div></div>
+    </div>
+    <div class="two-col" style="margin-bottom:14px;">
+      <div class="card">
+        <div class="card-title"><span>Sessions over time</span><div class="legend-row"><div class="leg-item"><div class="leg-sq" style="background:#7742A8;"></div>Sessions</div><div class="leg-item"><div class="leg-sq" style="background:#B978F5;"></div>Conversions</div></div></div>
+        <div class="chart-wrap"><canvas id="sessionsChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span>Top pages by traffic</span></div>
+        <table>
+          <thead><tr><th>Page</th><th>Views</th><th>Conv %</th><th>Source</th></tr></thead>
+          <tbody id="pagesTable">
+            <tr><td colspan="4" style="color:var(--c-hint);text-align:center;padding:16px;">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="section-label">Conversion Tracking</div>
+    <div class="kpi-grid" style="margin-bottom:14px;">
+      <div class="kpi-card"><div class="kpi-label">Newsletter signups</div><div class="kpi-val">1,043</div><div class="kpi-sub"><span class="up">+22%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">Form completions</div><div class="kpi-val">872</div><div class="kpi-sub"><span class="up">+5%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">Email link clicks</div><div class="kpi-val">318</div><div class="kpi-sub"><span class="down">−3%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">Phone link clicks</div><div class="kpi-val">211</div><div class="kpi-sub"><span class="up">+9%</span></div></div>
+    </div>
+    <div class="one-two">
+      <div class="card">
+        <div class="card-title">Conversion funnel</div>
+        <div class="funnel-wrap">
+          <div><div class="funnel-label"><span>Visitors</span><span>84,210</span></div><div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:100%;background:#190523;">100%</div></div></div>
+          <div><div class="funnel-label"><span>Page engaged</span><span>52,300</span></div><div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:62%;background:#50145A;">62%</div></div></div>
+          <div><div class="funnel-label"><span>CTA clicked</span><span>18,400</span></div><div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:22%;background:#7742A8;">22%</div></div></div>
+          <div><div class="funnel-label"><span>Form started</span><span>6,200</span></div><div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:7.4%;background:#B978F5;">7.4%</div></div></div>
+          <div><div class="funnel-label"><span>Converted</span><span>3,182</span></div><div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:3.8%;background:#CC99FF;color:#50145A;">3.8%</div></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span>Conversion trends</span><div class="legend-row"><div class="leg-item"><div class="leg-sq" style="background:#50145A;"></div>Signups</div><div class="leg-item"><div class="leg-sq" style="background:#B978F5;"></div>Forms</div></div></div>
+        <div class="chart-wrap"><canvas id="convChart"></canvas></div>
+      </div>
+    </div>
+  </div>
 
-<!-- OVERVIEW -->
-<div id="sec-overview">
-  <div class="section-label">Website Performance</div>
-  <div class="kpi-grid" style="margin-bottom:16px;">
-    <div class="kpi-card"><div class="kpi-label">Total sessions</div><div class="kpi-val">84,210</div><div class="kpi-sub"><span class="up">+12.4%</span> vs prev period</div></div>
-    <div class="kpi-card"><div class="kpi-label">Conversions</div><div class="kpi-val">3,182</div><div class="kpi-sub"><span class="up">+8.1%</span> vs prev period</div></div>
-    <div class="kpi-card"><div class="kpi-label">Avg. session duration</div><div class="kpi-val">3m 42s</div><div class="kpi-sub"><span class="down">−0.3%</span> vs prev period</div></div>
-    <div class="kpi-card"><div class="kpi-label">Bounce rate</div><div class="kpi-val">38.2%</div><div class="kpi-sub"><span class="up">−4.6%</span> improved</div></div>
-  </div>
-  <div class="two-col" style="margin-bottom:14px;">
-    <div class="card">
-      <div class="card-title"><span>Sessions over time</span><div class="legend-row"><div class="leg-item"><div class="leg-sq" style="background:#7742A8;"></div>Sessions</div><div class="leg-item"><div class="leg-sq" style="background:#B978F5;"></div>Conversions</div></div></div>
-      <div class="chart-wrap"><canvas id="sessionsChart"></canvas></div>
+  <!-- SEO -->
+  <div id="sec-seo" style="display:none;">
+    <div class="section-label">SEO Health</div>
+    <div class="kpi-grid" style="margin-bottom:14px;">
+      <div class="kpi-card"><div class="kpi-label">Pages indexed</div><div class="kpi-val">142</div><div class="kpi-sub"><span class="down">8 not indexed</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">Missing meta desc</div><div class="kpi-val">23</div><div class="kpi-sub"><span class="down">needs attention</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">Slow pages (&gt;3s)</div><div class="kpi-val">11</div><div class="kpi-sub"><span style="color:var(--v-medium);font-weight:500;">medium priority</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">Avg. CWV score</div><div class="kpi-val">71</div><div class="kpi-sub"><span style="color:var(--v-medium);font-weight:500;">needs work</span></div></div>
     </div>
-    <div class="card">
-      <div class="card-title"><span>Top pages by traffic</span></div>
-      <table>
-        <thead><tr><th>Page</th><th>Views</th><th>Conv %</th><th>Source</th></tr></thead>
-        <tbody>
-          <tr><td>/pricing</td><td class="mono">18,420</td><td class="mono">4.2%</td><td><span class="pill pill-ok">Organic</span></td></tr>
-          <tr><td>/features</td><td class="mono">14,310</td><td class="mono">2.9%</td><td><span class="pill pill-brand">Paid</span></td></tr>
-          <tr><td>/blog/seo-guide</td><td class="mono">11,230</td><td class="mono">1.8%</td><td><span class="pill pill-ok">Organic</span></td></tr>
-          <tr><td>/about</td><td class="mono">8,640</td><td class="mono">1.1%</td><td><span class="pill pill-low">Direct</span></td></tr>
-          <tr><td>/contact</td><td class="mono">7,210</td><td class="mono">5.8%</td><td><span class="pill pill-brand">Social</span></td></tr>
-        </tbody>
-      </table>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title"><span>Issues to fix</span></div>
+        <div>
+          <div class="seo-row"><div class="seo-icon si-red">!</div><div class="seo-info"><div class="seo-page">/products/analytics</div><div class="seo-desc">Missing meta description</div></div><span class="pill pill-high">HIGH</span></div>
+          <div class="seo-row"><div class="seo-icon si-red">!</div><div class="seo-info"><div class="seo-page">/blog/old-post-2021</div><div class="seo-desc">Low word count (180 words)</div></div><span class="pill pill-high">HIGH</span></div>
+          <div class="seo-row"><div class="seo-icon si-med">~</div><div class="seo-info"><div class="seo-page">/case-studies</div><div class="seo-desc">Load speed 4.2s — slow</div></div><span class="pill pill-med">MED</span></div>
+          <div class="seo-row"><div class="seo-icon si-med">~</div><div class="seo-info"><div class="seo-page">/resources/guide-v1</div><div class="seo-desc">3 broken internal links</div></div><span class="pill pill-med">MED</span></div>
+          <div class="seo-row"><div class="seo-icon si-low">i</div><div class="seo-info"><div class="seo-page">/team/legacy</div><div class="seo-desc">Not indexed by Google</div></div><span class="pill pill-low">LOW</span></div>
+          <div class="seo-row"><div class="seo-icon si-med">~</div><div class="seo-info"><div class="seo-page">/gallery</div><div class="seo-desc">Images missing alt text</div></div><span class="pill pill-med">MED</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">SEO score by category</div>
+        <div class="chart-wrap-lg"><canvas id="seoChart"></canvas></div>
+      </div>
     </div>
   </div>
-  <div class="section-label">Conversion Tracking</div>
-  <div class="kpi-grid" style="margin-bottom:14px;">
-    <div class="kpi-card"><div class="kpi-label">Newsletter signups</div><div class="kpi-val">1,043</div><div class="kpi-sub"><span class="up">+22%</span></div></div>
-    <div class="kpi-card"><div class="kpi-label">Form completions</div><div class="kpi-val">872</div><div class="kpi-sub"><span class="up">+5%</span></div></div>
-    <div class="kpi-card"><div class="kpi-label">Email link clicks</div><div class="kpi-val">318</div><div class="kpi-sub"><span class="down">−3%</span></div></div>
-    <div class="kpi-card"><div class="kpi-label">Phone link clicks</div><div class="kpi-val">211</div><div class="kpi-sub"><span class="up">+9%</span></div></div>
+
+  <!-- SOCIAL -->
+  <div id="sec-social" style="display:none;">
+    <div class="section-label">Social Media Overview</div>
+    <div class="platform-grid" style="margin-bottom:14px;">
+      <div class="platform-card"><div class="platform-name">LinkedIn</div><div class="platform-val">42.1K</div><div class="platform-eng"><span class="up">+3.8% eng</span></div></div>
+      <div class="platform-card"><div class="platform-name">Instagram</div><div class="platform-val">28.4K</div><div class="platform-eng"><span class="up">+5.2% eng</span></div></div>
+      <div class="platform-card"><div class="platform-name">Facebook</div><div class="platform-val">61.0K</div><div class="platform-eng"><span class="down">−1.9% eng</span></div></div>
+      <div class="platform-card"><div class="platform-name">YouTube</div><div class="platform-val">18.7K</div><div class="platform-eng"><span class="up">+6.1% eng</span></div></div>
+      <div class="platform-card"><div class="platform-name">TikTok</div><div class="platform-val">12.3K</div><div class="platform-eng"><span class="up">+8.4% eng</span></div></div>
+      <div class="platform-card"><div class="platform-name">X (Twitter)</div><div class="platform-val">9.1K</div><div class="platform-eng"><span class="down">−1.2% eng</span></div></div>
+      <div class="platform-card"><div class="platform-name">Pinterest</div><div class="platform-val">5.6K</div><div class="platform-eng"><span class="up">+2.7% eng</span></div></div>
+      <div class="platform-card"><div class="platform-name">Snapchat</div><div class="platform-val">3.2K</div><div class="platform-eng"><span class="up">+4.1% eng</span></div></div>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title"><span>Follower growth</span><div class="legend-row"><div class="leg-item"><div class="leg-sq" style="background:#50145A;"></div>LinkedIn</div><div class="leg-item"><div class="leg-sq" style="background:#7742A8;"></div>Instagram</div><div class="leg-item"><div class="leg-sq" style="background:#B978F5;"></div>YouTube</div></div></div>
+        <div class="chart-wrap-lg"><canvas id="socialChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Engagement rate by platform</div>
+        <div class="chart-wrap-lg"><canvas id="engChart"></canvas></div>
+      </div>
+    </div>
   </div>
-  <div class="one-two">
-    <div class="card">
-      <div class="card-title">Conversion funnel</div>
-      <div class="funnel-wrap">
-        <div><div class="funnel-label"><span>Visitors</span><span>84,210</span></div><div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:100%;background:#190523;">100%</div></div></div>
-        <div><div class="funnel-label"><span>Page engaged</span><span>52,300</span></div><div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:62%;background:#50145A;">62%</div></div></div>
-        <div><div class="funnel-label"><span>CTA clicked</span><span>18,400</span></div><div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:22%;background:#7742A8;">22%</div></div></div>
-        <div><div class="funnel-label"><span>Form started</span><span>6,200</span></div><div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:7.4%;background:#B978F5;">7.4%</div></div></div>
-        <div><div class="funnel-label"><span>Converted</span><span>3,182</span></div><div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:3.8%;background:#CC99FF;color:#50145A;">3.8%</div></div></div>
+
+  <!-- ADS -->
+  <div id="sec-ads" style="display:none;">
+    <div class="section-label">Google Ads Performance</div>
+    <div class="kpi-grid" style="margin-bottom:14px;">
+      <div class="kpi-card"><div class="kpi-label">Total spend</div><div class="kpi-val">$14,820</div><div class="kpi-sub"><span class="up">ROAS 3.2x</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">Impressions</div><div class="kpi-val">2.1M</div><div class="kpi-sub"><span class="up">+18%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">Clicks</div><div class="kpi-val">38,412</div><div class="kpi-sub"><span class="up">CTR 1.83%</span></div></div>
+      <div class="kpi-card"><div class="kpi-label">Avg. CPC</div><div class="kpi-val">$0.39</div><div class="kpi-sub"><span class="down">+$0.04</span></div></div>
+    </div>
+    <div class="two-col" style="margin-bottom:14px;">
+      <div class="card">
+        <div class="card-title">Top by impressions</div>
+        <table>
+          <thead><tr><th>Campaign</th><th>Impressions</th><th>CTR</th></tr></thead>
+          <tbody>
+            <tr><td>Brand Awareness</td><td class="mono">580K</td><td class="mono">0.9%</td></tr>
+            <tr><td>Product — Analytics</td><td class="mono">310K</td><td class="mono">2.1%</td></tr>
+            <tr><td>Retargeting</td><td class="mono">290K</td><td class="mono">3.4%</td></tr>
+            <tr><td>Competitor KW</td><td class="mono">210K</td><td class="mono">1.6%</td></tr>
+            <tr><td>Blog Promotion</td><td class="mono">180K</td><td class="mono">0.7%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">Top by clicks</div>
+        <table>
+          <thead><tr><th>Campaign</th><th>Clicks</th><th>Conv %</th><th>CPC</th></tr></thead>
+          <tbody>
+            <tr><td>Product — Analytics</td><td class="mono">8,420</td><td class="mono">4.1%</td><td class="mono">$0.31</td></tr>
+            <tr><td>Retargeting</td><td class="mono">6,210</td><td class="mono">5.8%</td><td class="mono">$0.28</td></tr>
+            <tr><td>Brand Awareness</td><td class="mono">5,230</td><td class="mono">3.2%</td><td class="mono">$0.41</td></tr>
+            <tr><td>Competitor KW</td><td class="mono">3,360</td><td class="mono">2.9%</td><td class="mono">$0.58</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <div class="card">
-      <div class="card-title"><span>Conversion trends</span><div class="legend-row"><div class="leg-item"><div class="leg-sq" style="background:#50145A;"></div>Signups</div><div class="leg-item"><div class="leg-sq" style="background:#B978F5;"></div>Forms</div></div></div>
-      <div class="chart-wrap"><canvas id="convChart"></canvas></div>
+      <div class="card-title"><span>Spend vs conversions</span><div class="legend-row"><div class="leg-item"><div class="leg-sq" style="background:#50145A;"></div>Spend</div><div class="leg-item"><div class="leg-sq" style="background:#B978F5;"></div>Conversions</div></div></div>
+      <div class="chart-wrap-lg"><canvas id="adsChart"></canvas></div>
     </div>
   </div>
-</div>
 
-<!-- SEO -->
-<div id="sec-seo" style="display:none;">
-  <div class="section-label">SEO Health</div>
-  <div class="kpi-grid" style="margin-bottom:14px;">
-    <div class="kpi-card"><div class="kpi-label">Pages indexed</div><div class="kpi-val">142</div><div class="kpi-sub"><span class="down">8 not indexed</span></div></div>
-    <div class="kpi-card"><div class="kpi-label">Missing meta desc</div><div class="kpi-val">23</div><div class="kpi-sub"><span class="down">needs attention</span></div></div>
-    <div class="kpi-card"><div class="kpi-label">Slow pages (&gt;3s)</div><div class="kpi-val">11</div><div class="kpi-sub"><span style="color:var(--v-medium);font-weight:500;">medium priority</span></div></div>
-    <div class="kpi-card"><div class="kpi-label">Avg. CWV score</div><div class="kpi-val">71</div><div class="kpi-sub"><span style="color:var(--v-medium);font-weight:500;">needs work</span></div></div>
-  </div>
-  <div class="two-col">
-    <div class="card">
-      <div class="card-title"><span>Issues to fix</span></div>
-      <div>
-        <div class="seo-row"><div class="seo-icon si-red">!</div><div class="seo-info"><div class="seo-page">/products/analytics</div><div class="seo-desc">Missing meta description</div></div><span class="pill pill-high">HIGH</span></div>
-        <div class="seo-row"><div class="seo-icon si-red">!</div><div class="seo-info"><div class="seo-page">/blog/old-post-2021</div><div class="seo-desc">Low word count (180 words)</div></div><span class="pill pill-high">HIGH</span></div>
-        <div class="seo-row"><div class="seo-icon si-med">~</div><div class="seo-info"><div class="seo-page">/case-studies</div><div class="seo-desc">Load speed 4.2s — slow</div></div><span class="pill pill-med">MED</span></div>
-        <div class="seo-row"><div class="seo-icon si-med">~</div><div class="seo-info"><div class="seo-page">/resources/guide-v1</div><div class="seo-desc">3 broken internal links</div></div><span class="pill pill-med">MED</span></div>
-        <div class="seo-row"><div class="seo-icon si-low">i</div><div class="seo-info"><div class="seo-page">/team/legacy</div><div class="seo-desc">Not indexed by Google</div></div><span class="pill pill-low">LOW</span></div>
-        <div class="seo-row"><div class="seo-icon si-med">~</div><div class="seo-info"><div class="seo-page">/gallery</div><div class="seo-desc">Images missing alt text</div></div><span class="pill pill-med">MED</span></div>
+  <!-- KEYWORDS -->
+  <div id="sec-keywords" style="display:none;">
+    <div class="section-label" style="display:flex;align-items:center;gap:8px;">
+      Search Keywords &amp; Queries
+      <span id="kwDataBadge" class="data-badge" style="display:none;">Live data</span>
+    </div>
+    <!-- SC Summary KPIs -->
+    <div class="kpi-grid" style="margin-bottom:14px;" id="scKpiGrid">
+      <div class="kpi-card"><div class="kpi-label">Total clicks</div><div class="kpi-val" id="sc-clicks">—</div><div class="kpi-sub">from Search Console</div></div>
+      <div class="kpi-card"><div class="kpi-label">Total impressions</div><div class="kpi-val" id="sc-impressions">—</div><div class="kpi-sub">from Search Console</div></div>
+      <div class="kpi-card"><div class="kpi-label">Avg. CTR</div><div class="kpi-val" id="sc-ctr">—</div><div class="kpi-sub">click-through rate</div></div>
+      <div class="kpi-card"><div class="kpi-label">Avg. position</div><div class="kpi-val" id="sc-position">—</div><div class="kpi-sub">avg. ranking position</div></div>
+    </div>
+    <div class="two-col" style="margin-bottom:14px;">
+      <div class="card">
+        <div class="card-title">
+          <span>Top keywords</span>
+          <div class="tabs">
+            <button class="tab-btn active" onclick="filterKw('all',this)">All</button>
+            <button class="tab-btn" onclick="filterKw('brand',this)">Brand</button>
+            <button class="tab-btn" onclick="filterKw('nonbrand',this)">Non-brand</button>
+          </div>
+        </div>
+        <table>
+          <thead><tr><th>Keyword</th><th>Clicks</th><th>Impr.</th><th>CTR</th><th>Pos.</th></tr></thead>
+          <tbody id="kwBody">
+            <tr><td colspan="5" style="color:var(--c-hint);text-align:center;padding:16px;">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">Long-tail queries</div>
+        <table>
+          <thead><tr><th>Query</th><th>Clicks</th><th>CTR</th></tr></thead>
+          <tbody id="ltTable">
+            <tr><td colspan="3" style="color:var(--c-hint);text-align:center;padding:16px;">Loading…</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <div class="card">
-      <div class="card-title">SEO score by category</div>
-      <div class="chart-wrap-lg"><canvas id="seoChart"></canvas></div>
+      <div class="card-title">Click distribution by keyword type</div>
+      <div class="chart-wrap-md"><canvas id="kwChart"></canvas></div>
     </div>
   </div>
-</div>
-
-<!-- SOCIAL -->
-<div id="sec-social" style="display:none;">
-  <div class="section-label">Social Media Overview</div>
-  <div class="platform-grid" style="margin-bottom:14px;">
-    <div class="platform-card"><div class="platform-name">LinkedIn</div><div class="platform-val">42.1K</div><div class="platform-eng"><span class="up">+3.8% eng</span></div></div>
-    <div class="platform-card"><div class="platform-name">Instagram</div><div class="platform-val">28.4K</div><div class="platform-eng"><span class="up">+5.2% eng</span></div></div>
-    <div class="platform-card"><div class="platform-name">Facebook</div><div class="platform-val">61.0K</div><div class="platform-eng"><span class="down">−1.9% eng</span></div></div>
-    <div class="platform-card"><div class="platform-name">YouTube</div><div class="platform-val">18.7K</div><div class="platform-eng"><span class="up">+6.1% eng</span></div></div>
-    <div class="platform-card"><div class="platform-name">TikTok</div><div class="platform-val">12.3K</div><div class="platform-eng"><span class="up">+8.4% eng</span></div></div>
-    <div class="platform-card"><div class="platform-name">X (Twitter)</div><div class="platform-val">9.1K</div><div class="platform-eng"><span class="down">−1.2% eng</span></div></div>
-    <div class="platform-card"><div class="platform-name">Pinterest</div><div class="platform-val">5.6K</div><div class="platform-eng"><span class="up">+2.7% eng</span></div></div>
-    <div class="platform-card"><div class="platform-name">Snapchat</div><div class="platform-val">3.2K</div><div class="platform-eng"><span class="up">+4.1% eng</span></div></div>
-  </div>
-  <div class="two-col">
-    <div class="card">
-      <div class="card-title"><span>Follower growth</span><div class="legend-row"><div class="leg-item"><div class="leg-sq" style="background:#50145A;"></div>LinkedIn</div><div class="leg-item"><div class="leg-sq" style="background:#7742A8;"></div>Instagram</div><div class="leg-item"><div class="leg-sq" style="background:#B978F5;"></div>YouTube</div></div></div>
-      <div class="chart-wrap-lg"><canvas id="socialChart"></canvas></div>
-    </div>
-    <div class="card">
-      <div class="card-title">Engagement rate by platform</div>
-      <div class="chart-wrap-lg"><canvas id="engChart"></canvas></div>
-    </div>
-  </div>
-</div>
-
-<!-- ADS -->
-<div id="sec-ads" style="display:none;">
-  <div class="section-label">Google Ads Performance</div>
-  <div class="kpi-grid" style="margin-bottom:14px;">
-    <div class="kpi-card"><div class="kpi-label">Total spend</div><div class="kpi-val">$14,820</div><div class="kpi-sub"><span class="up">ROAS 3.2x</span></div></div>
-    <div class="kpi-card"><div class="kpi-label">Impressions</div><div class="kpi-val">2.1M</div><div class="kpi-sub"><span class="up">+18%</span></div></div>
-    <div class="kpi-card"><div class="kpi-label">Clicks</div><div class="kpi-val">38,412</div><div class="kpi-sub"><span class="up">CTR 1.83%</span></div></div>
-    <div class="kpi-card"><div class="kpi-label">Avg. CPC</div><div class="kpi-val">$0.39</div><div class="kpi-sub"><span class="down">+$0.04</span></div></div>
-  </div>
-  <div class="two-col" style="margin-bottom:14px;">
-    <div class="card">
-      <div class="card-title">Top by impressions</div>
-      <table>
-        <thead><tr><th>Campaign</th><th>Impressions</th><th>CTR</th></tr></thead>
-        <tbody>
-          <tr><td>Brand Awareness</td><td class="mono">580K</td><td class="mono">0.9%</td></tr>
-          <tr><td>Product — Analytics</td><td class="mono">310K</td><td class="mono">2.1%</td></tr>
-          <tr><td>Retargeting</td><td class="mono">290K</td><td class="mono">3.4%</td></tr>
-          <tr><td>Competitor KW</td><td class="mono">210K</td><td class="mono">1.6%</td></tr>
-          <tr><td>Blog Promotion</td><td class="mono">180K</td><td class="mono">0.7%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card">
-      <div class="card-title">Top by clicks</div>
-      <table>
-        <thead><tr><th>Campaign</th><th>Clicks</th><th>Conv %</th><th>CPC</th></tr></thead>
-        <tbody>
-          <tr><td>Product — Analytics</td><td class="mono">8,420</td><td class="mono">4.1%</td><td class="mono">$0.31</td></tr>
-          <tr><td>Retargeting</td><td class="mono">6,210</td><td class="mono">5.8%</td><td class="mono">$0.28</td></tr>
-          <tr><td>Brand Awareness</td><td class="mono">5,230</td><td class="mono">3.2%</td><td class="mono">$0.41</td></tr>
-          <tr><td>Competitor KW</td><td class="mono">3,360</td><td class="mono">2.9%</td><td class="mono">$0.58</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-title"><span>Spend vs conversions</span><div class="legend-row"><div class="leg-item"><div class="leg-sq" style="background:#50145A;"></div>Spend</div><div class="leg-item"><div class="leg-sq" style="background:#B978F5;"></div>Conversions</div></div></div>
-    <div class="chart-wrap-lg"><canvas id="adsChart"></canvas></div>
-  </div>
-</div>
-
-<!-- KEYWORDS -->
-<div id="sec-keywords" style="display:none;">
-  <div class="section-label">Search Keywords &amp; Queries</div>
-  <div class="two-col" style="margin-bottom:14px;">
-    <div class="card">
-      <div class="card-title"><span>Top keywords</span><div class="tabs"><button class="tab-btn active" onclick="filterKw('all',this)">All</button><button class="tab-btn" onclick="filterKw('brand',this)">Brand</button><button class="tab-btn" onclick="filterKw('nonbrand',this)">Non-brand</button></div></div>
-      <table><thead><tr><th>Keyword</th><th>Clicks</th><th>Impressions</th><th>Pos.</th></tr></thead><tbody id="kwBody"></tbody></table>
-    </div>
-    <div class="card">
-      <div class="card-title">Long-tail queries</div>
-      <table><thead><tr><th>Query</th><th>Clicks</th><th>CTR</th></tr></thead>
-        <tbody>
-          <tr><td>how to track marketing conversions free</td><td class="mono">84</td><td class="mono">6.2%</td></tr>
-          <tr><td>best marketing dashboard small business</td><td class="mono">71</td><td class="mono">5.8%</td></tr>
-          <tr><td>google ads vs organic traffic comparison</td><td class="mono">62</td><td class="mono">4.4%</td></tr>
-          <tr><td>seo audit checklist ecommerce sites</td><td class="mono">58</td><td class="mono">3.9%</td></tr>
-          <tr><td>how to improve bounce rate landing page</td><td class="mono">54</td><td class="mono">7.1%</td></tr>
-          <tr><td>keyword position tracking without ahrefs</td><td class="mono">38</td><td class="mono">5.5%</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-title">Click distribution by keyword type</div>
-    <div class="chart-wrap-md"><canvas id="kwChart"></canvas></div>
-  </div>
-</div>
-
 </div><!-- end content -->
 
 <script>
@@ -357,10 +347,9 @@ function initOverview() {
 }
 
 function initSeo() {
-  mk('seoChart', { type:'radar', data:{ labels:['Meta Tags','Page Speed','Content','Backlinks','Core Web Vitals','Mobile UX'],
-    datasets:[{ data:[58,44,76,63,71,82], backgroundColor:'rgba(185,120,245,0.15)', borderColor:'#B978F5', pointBackgroundColor:'#7742A8', pointRadius:4 }]
-  }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } },
-    scales:{ r:{ min:0, max:100, ticks:{ font:{ size:10 }, color:'#888' }, pointLabels:{ font:{ size:11 }, color:'#555' } } } } });
+  mk('seoChart', { type:'radar', data:{ labels:['Meta Tags','Page Speed','Content','Backlinks','Core Web Vitals','Mobile UX'], datasets:[{
+    data:[58,44,76,63,71,82], backgroundColor:'rgba(185,120,245,0.15)', borderColor:'#B978F5', pointBackgroundColor:'#7742A8', pointRadius:4
+  }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ r:{ min:0, max:100, ticks:{ font:{ size:10 }, color:'#888' }, pointLabels:{ font:{ size:11 }, color:'#555' } } } } });
 }
 
 function initSocial() {
@@ -369,50 +358,98 @@ function initSocial() {
     { data:randArr(24000,30000,8), borderColor:'#7742A8', tension:0.4, pointRadius:2, fill:false },
     { data:randArr(16000,20000,8), borderColor:'#B978F5', tension:0.4, pointRadius:2, fill:false }
   ]}, options:baseOpts });
-  mk('engChart', { type:'bar', data:{ labels:['LinkedIn','Instagram','Facebook','YouTube','TikTok','X'],
-    datasets:[{ data:[3.8,5.2,1.9,6.1,8.4,1.2], backgroundColor:PURPLES, borderRadius:4 }]
-  }, options:{ ...baseOpts, scales:{ ...baseOpts.scales, y:{ ...baseOpts.scales.y, ticks:{ ...baseOpts.scales.y.ticks, callback:v=>v+'%' } } } } });
+  mk('engChart', { type:'bar', data:{ labels:['LinkedIn','Instagram','Facebook','YouTube','TikTok','X'], datasets:[{ data:[3.8,5.2,1.9,6.1,8.4,1.2], backgroundColor:PURPLES, borderRadius:4 }] }, options:{ ...baseOpts, scales:{ ...baseOpts.scales, y:{ ...baseOpts.scales.y, ticks:{ ...baseOpts.scales.y.ticks, callback:v=>v+'%' } } } } });
 }
 
 function initAds() {
   mk('adsChart', { type:'bar', data:{ labels:LBLS, datasets:[
     { data:randArr(400,700,8), backgroundColor:'rgba(80,20,90,0.75)', borderRadius:3, yAxisID:'y' },
     { type:'line', data:randArr(80,180,8), borderColor:'#B978F5', tension:0.4, pointRadius:3, fill:false, yAxisID:'y2' }
-  ]}, options:{ ...baseOpts, scales:{
-    x:baseOpts.scales.x,
-    y:{ ...baseOpts.scales.y, ticks:{ ...baseOpts.scales.y.ticks, callback:v=>'$'+v } },
-    y2:{ position:'right', grid:{ display:false }, ticks:{ font:{ size:10 }, color:'#888' } }
-  }}});
+  ]}, options:{ ...baseOpts, scales:{ x:baseOpts.scales.x, y:{ ...baseOpts.scales.y, ticks:{ ...baseOpts.scales.y.ticks, callback:v=>'$'+v } }, y2:{ position:'right', grid:{ display:false }, ticks:{ font:{ size:10 }, color:'#888' } } }}});
 }
 
-const allKw = [
-  {kw:'marketing dashboard',clicks:1840,impr:22400,pos:1.2,type:'brand'},
-  {kw:'analytics software',clicks:1210,impr:31200,pos:3.4,type:'nonbrand'},
-  {kw:'view-ai',clicks:980,impr:8200,pos:1.0,type:'brand'},
-  {kw:'seo tracking tool',clicks:870,impr:19400,pos:4.1,type:'nonbrand'},
-  {kw:'conversion rate tool',clicks:640,impr:14800,pos:5.2,type:'nonbrand'},
-  {kw:'view-ai pricing',clicks:520,impr:4100,pos:1.1,type:'brand'},
-  {kw:'website analytics',clicks:480,impr:28100,pos:7.3,type:'nonbrand'},
-];
+// ── KEYWORD STATE ─────────────────────────────────────────────────────
+// Real data from API (null until loaded)
+let realSearchData = null;
 let kwFilter = 'all';
+
+// Fallback mock data (used only if API hasn't loaded yet)
+const mockKw = [
+  {keyword:'marketing dashboard',clicks:1840,impressions:22400,ctr:'8.2%',position:'1.2',type:'brand'},
+  {keyword:'analytics software',clicks:1210,impressions:31200,ctr:'3.9%',position:'3.4',type:'nonbrand'},
+  {keyword:'view-ai',clicks:980,impressions:8200,ctr:'12.0%',position:'1.0',type:'brand'},
+  {keyword:'seo tracking tool',clicks:870,impressions:19400,ctr:'4.5%',position:'4.1',type:'nonbrand'},
+  {keyword:'conversion rate tool',clicks:640,impressions:14800,ctr:'4.3%',position:'5.2',type:'nonbrand'},
+  {keyword:'view-ai pricing',clicks:520,impressions:4100,ctr:'12.7%',position:'1.1',type:'brand'},
+  {keyword:'website analytics',clicks:480,impressions:28100,ctr:'1.7%',position:'7.3',type:'nonbrand'},
+];
+
 function filterKw(type, btn) {
   kwFilter = type;
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active'); renderKw();
-}
-function renderKw() {
-  const data = kwFilter==='all' ? allKw : allKw.filter(k=>k.type===kwFilter);
-  document.getElementById('kwBody').innerHTML = data.map(k=>
-    `<tr><td>${k.kw}</td><td class="mono">${k.clicks.toLocaleString()}</td><td class="mono">${k.impr.toLocaleString()}</td><td class="mono">${k.pos}</td></tr>`
-  ).join('');
-}
-function initKeywords() {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
   renderKw();
+}
+
+function renderKw() {
+  const source = realSearchData?.keywords || mockKw;
+  const data = kwFilter === 'all' ? source : source.filter(k => k.type === kwFilter);
+  document.getElementById('kwBody').innerHTML = data.length
+    ? data.map(k => `<tr>
+        <td>${k.keyword}</td>
+        <td class="mono">${(k.clicks||0).toLocaleString()}</td>
+        <td class="mono">${(k.impressions||0).toLocaleString()}</td>
+        <td class="mono">${k.ctr||'—'}</td>
+        <td class="mono">${k.position||'—'}</td>
+      </tr>`).join('')
+    : `<tr><td colspan="5" style="color:var(--c-hint);text-align:center;padding:12px;">No data for this filter</td></tr>`;
+}
+
+function renderLongTail() {
+  const lt = realSearchData?.longTail;
+  const ltTable = document.getElementById('ltTable');
+  if (!ltTable) return;
+  if (lt && lt.length > 0) {
+    ltTable.innerHTML = lt.map(k => `<tr>
+      <td>${k.keyword}</td>
+      <td class="mono">${k.clicks}</td>
+      <td class="mono">${k.ctr}</td>
+    </tr>`).join('');
+  } else if (realSearchData) {
+    // API loaded but no long-tail queries this period
+    ltTable.innerHTML = `<tr><td colspan="3" style="color:var(--c-hint);text-align:center;padding:12px;">No long-tail queries this period</td></tr>`;
+  }
+  // If realSearchData is null, leave as "Loading..."
+}
+
+function renderScKpis() {
+  const s = realSearchData?.summary;
+  if (!s) return;
+  document.getElementById('sc-clicks').textContent = (s.totalClicks||0).toLocaleString();
+  document.getElementById('sc-impressions').textContent = (s.totalImpressions||0).toLocaleString();
+  document.getElementById('sc-ctr').textContent = s.avgCtr || '—';
+  document.getElementById('sc-position').textContent = s.avgPosition || '—';
+}
+
+function initKeywords() {
+  renderScKpis();
+  renderKw();
+  renderLongTail();
+
+  // Build doughnut with real data if available
+  const source = realSearchData?.keywords || mockKw;
+  const brandClicks = source.filter(k=>k.type==='brand').reduce((s,k)=>s+k.clicks,0);
+  const nonbrandClicks = source.filter(k=>k.type==='nonbrand').reduce((s,k)=>s+k.clicks,0);
+  const ltClicks = (realSearchData?.longTail||[]).reduce((s,k)=>s+k.clicks,0);
+  const total = brandClicks + nonbrandClicks + ltClicks || 1;
+  const bp = Math.round(brandClicks/total*100);
+  const np = Math.round(nonbrandClicks/total*100);
+  const lp = 100 - bp - np;
+
   mk('kwChart', { type:'doughnut', data:{
-    labels:['Brand 44%','Non-brand 51%','Long-tail 5%'],
-    datasets:[{ data:[3340,3870,408], backgroundColor:['#50145A','#7742A8','#DCBEFA'], borderWidth:0, hoverOffset:4 }]
-  }, options:{ responsive:true, maintainAspectRatio:false, cutout:'60%',
-    plugins:{ legend:{ display:true, position:'right', labels:{ font:{ size:11 }, color:'#888', boxWidth:12, padding:12 } } } } });
+    labels:[`Brand ${bp}%`, `Non-brand ${np}%`, `Long-tail ${lp}%`],
+    datasets:[{ data:[brandClicks||44, nonbrandClicks||51, ltClicks||5], backgroundColor:['#50145A','#7742A8','#DCBEFA'], borderWidth:0, hoverOffset:4 }]
+  }, options:{ responsive:true, maintainAspectRatio:false, cutout:'60%', plugins:{ legend:{ display:true, position:'right', labels:{ font:{ size:11 }, color:'#888', boxWidth:12, padding:12 } } } } });
 }
 
 const sections = ['overview','seo','social','ads','keywords'];
@@ -426,18 +463,18 @@ function showSection(s, btn) {
   current = s;
   if (initFns[s]) initFns[s]();
 }
+
 function setTime(btn) {
-  document.querySelectorAll('.time-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   if (initFns[current]) initFns[current]();
 }
 
 initOverview();
 </script>
-</body>
-</html>
+
 <script>
-// ── REAL DATA FETCHING ──────────────────────────────────────────────
+// ── REAL DATA FETCHING ────────────────────────────────────────────────
 let currentPeriod = '30d';
 
 async function fetchRealData(period) {
@@ -448,27 +485,24 @@ async function fetchRealData(period) {
       fetch(`/api/search?period=${period}`).then(r => r.json()),
     ]);
 
-    // Update KPI cards
-    document.querySelectorAll('.kpi-val')[0].textContent = analytics.sessions?.toLocaleString() || '—';
-    document.querySelectorAll('.kpi-val')[1].textContent = analytics.conversions?.toLocaleString() || '—';
-    document.querySelectorAll('.kpi-val')[2].textContent = analytics.avgDuration || '—';
-    document.querySelectorAll('.kpi-val')[3].textContent = analytics.bounceRate || '—';
+    // ── Analytics KPIs ──
+    document.getElementById('kpi-sessions').textContent = analytics.sessions?.toLocaleString() || '—';
+    document.getElementById('kpi-conversions').textContent = analytics.conversions?.toLocaleString() || '—';
+    document.getElementById('kpi-duration').textContent = analytics.avgDuration || '—';
+    document.getElementById('kpi-bounce').textContent = analytics.bounceRate || '—';
 
-    // Update top pages table
+    // ── Top pages ──
     if (analytics.topPages?.length) {
-      const tbody = document.querySelector('#pagesTable') || document.querySelector('tbody');
-      if (tbody) {
-        tbody.innerHTML = analytics.topPages.map(p => `
-          <tr>
-            <td>${p.page}</td>
-            <td class="mono">${p.views?.toLocaleString()}</td>
-            <td class="mono">${p.convRate}</td>
-            <td><span class="pill pill-ok">${p.source || 'Organic'}</span></td>
-          </tr>`).join('');
-      }
+      document.getElementById('pagesTable').innerHTML = analytics.topPages.map(p => `
+        <tr>
+          <td>${p.page}</td>
+          <td class="mono">${p.views?.toLocaleString()}</td>
+          <td class="mono">${p.convRate}</td>
+          <td><span class="pill pill-ok">${p.source || 'Organic'}</span></td>
+        </tr>`).join('');
     }
 
-    // Update sessions chart with real data
+    // ── Sessions chart ──
     if (analytics.trend?.length) {
       const labels = analytics.trend.map(d => d.date.replace(/(\d{4})(\d{2})(\d{2})/, '$2/$3'));
       const sessionData = analytics.trend.map(d => d.sessions);
@@ -481,34 +515,25 @@ async function fetchRealData(period) {
       }
     }
 
-    // Update Search Console keyword table
-    if (search.keywords?.length) {
-      const kwBody = document.getElementById('kwBody');
-      if (kwBody) {
-        kwBody.innerHTML = search.keywords.map(k => `
-          <tr>
-            <td>${k.keyword}</td>
-            <td class="mono">${k.clicks?.toLocaleString()}</td>
-            <td class="mono">${k.impressions?.toLocaleString()}</td>
-            <td class="mono">${k.position}</td>
-          </tr>`).join('');
+    // ── Search Console data ──
+    if (search && !search.error) {
+      realSearchData = search;
+
+      // Show "Live data" badge on Keywords tab
+      const badge = document.getElementById('kwDataBadge');
+      if (badge) badge.style.display = '';
+
+      // If Keywords tab is currently visible, refresh it immediately
+      if (current === 'keywords') {
+        renderScKpis();
+        renderKw();
+        renderLongTail();
+        // Rebuild doughnut with real data
+        initKeywords();
       }
     }
 
-    // Update long-tail table
-    if (search.longTail?.length) {
-      const ltTable = document.querySelector('#ltTable');
-      if (ltTable) {
-        ltTable.innerHTML = search.longTail.map(k => `
-          <tr>
-            <td>${k.keyword}</td>
-            <td class="mono">${k.clicks}</td>
-            <td class="mono">${k.ctr}</td>
-          </tr>`).join('');
-      }
-    }
-
-    // Try Ads (optional - may not be set up yet)
+    // ── Ads (optional) ──
     try {
       const ads = await fetch(`/api/ads?period=${period}`).then(r => r.json());
       if (ads.summary) {
@@ -518,9 +543,7 @@ async function fetchRealData(period) {
         if (adKpis[2]) adKpis[2].textContent = ads.summary.totalClicks?.toLocaleString();
         if (adKpis[3]) adKpis[3].textContent = ads.summary.avgCpc;
       }
-    } catch(e) {
-      console.log('Ads not connected yet:', e.message);
-    }
+    } catch(e) { console.log('Ads not connected yet:', e.message); }
 
   } catch(err) {
     console.error('API fetch error:', err);
@@ -536,7 +559,7 @@ window.setTime = function(btn) {
 };
 
 // Auto-fetch on load
-window.addEventListener('load', () => {
-  fetchRealData('30d');
-});
+window.addEventListener('load', () => { fetchRealData('30d'); });
 </script>
+</body>
+</html>
