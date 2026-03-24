@@ -36,6 +36,7 @@ body { font-family: var(--font); background: var(--c-bg); color: var(--c-text); 
 .export-btn:hover { background: var(--v-lightest); color: var(--v-primary); }
 .content { padding: 20px 24px; display: flex; flex-direction: column; gap: 20px; max-width: 1400px; margin: 0 auto; }
 .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; color: var(--v-medium); text-transform: uppercase; margin-bottom: 10px; }
+.kpi-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .kpi-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; }
 .kpi-card { background: var(--c-surface); border: 0.5px solid var(--c-border); border-radius: 10px; padding: 14px 16px; border-top: 2px solid var(--v-pop); }
 .kpi-label { font-size: 11px; color: var(--c-muted); font-weight: 500; margin-bottom: 6px; }
@@ -44,29 +45,38 @@ body { font-family: var(--font); background: var(--c-bg); color: var(--c-text); 
 .up { color: var(--v-green); font-weight: 500; }
 .down { color: var(--v-red); font-weight: 500; }
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.one-two { display: grid; grid-template-columns: 1fr 1.6fr; gap: 14px; }
+/* 3-col layout for overview: funnel | col-A | col-B */
+.overview-grid { display: grid; grid-template-columns: 280px 1fr 1fr; gap: 14px; margin-bottom: 16px; }
 .card { background: var(--c-surface); border: 0.5px solid var(--c-border); border-radius: 12px; padding: 16px; }
 .card-title { font-size: 13px; font-weight: 600; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; color: var(--c-text); }
 .chart-wrap { position: relative; width: 100%; height: 190px; }
 .chart-wrap-lg { position: relative; width: 100%; height: 220px; }
-.chart-wrap-md { position: relative; width: 100%; height: 160px; }
+.chart-wrap-md { position: relative; width: 100%; height: 180px; }
 table { width: 100%; border-collapse: collapse; }
-th { font-size: 10px; font-weight: 600; color: var(--c-hint); text-transform: uppercase; letter-spacing: 0.05em; text-align: left; padding: 0 8px 7px; border-bottom: 0.5px solid var(--c-border); }
-td { padding: 8px; font-size: 12px; border-bottom: 0.5px solid var(--c-border); color: var(--c-text); }
+th { font-size: 10px; font-weight: 600; color: var(--c-hint); text-transform: uppercase; letter-spacing: 0.05em; text-align: left; padding: 0 6px 7px; border-bottom: 0.5px solid var(--c-border); }
+td { padding: 6px; font-size: 11px; border-bottom: 0.5px solid var(--c-border); color: var(--c-text); }
 tr:last-child td { border-bottom: none; }
 td.mono { font-family: var(--mono); font-size: 11px; }
+td.page-cell { max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+td.query-cell { max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--c-muted); font-size: 10px; }
 .pill { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 600; }
 .pill-high { background: var(--v-red-dim); color: var(--v-red); }
 .pill-med { background: rgba(119,66,168,0.12); color: var(--v-medium); }
 .pill-low { background: var(--v-lightest); color: var(--v-primary); }
 .pill-ok { background: var(--v-lightest); color: var(--v-primary); }
 .pill-brand { background: rgba(185,120,245,0.15); color: var(--v-medium); }
-.platform-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; }
-.platform-card { background: var(--c-surface); border: 0.5px solid var(--c-border); border-radius: 10px; padding: 12px; cursor: pointer; transition: border-color 0.15s; }
-.platform-card:hover { border-color: var(--v-pop); }
+/* Funnel */
+.funnel-wrap { display: flex; flex-direction: column; gap: 7px; }
+.funnel-label { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 3px; color: var(--c-text); }
+.funnel-bar-bg { background: var(--c-surface2); border-radius: 3px; height: 22px; overflow: hidden; }
+.funnel-bar-fill { height: 22px; border-radius: 3px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 600; color: #fff; }
+/* Platform cards */
+.platform-grid { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 10px; }
+.platform-card { background: var(--c-surface); border: 0.5px solid var(--c-border); border-radius: 10px; padding: 12px; }
 .platform-name { font-size: 11px; font-weight: 600; color: var(--c-muted); margin-bottom: 6px; }
 .platform-val { font-size: 18px; font-weight: 700; letter-spacing: -0.4px; color: var(--c-text); }
 .platform-eng { font-size: 11px; margin-top: 3px; }
+/* SEO */
 .seo-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid var(--c-border); }
 .seo-row:last-child { border-bottom: none; }
 .seo-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; font-weight: 700; }
@@ -76,10 +86,6 @@ td.mono { font-family: var(--mono); font-size: 11px; }
 .seo-info { flex: 1; }
 .seo-page { font-size: 12px; font-weight: 500; color: var(--c-text); }
 .seo-desc { font-size: 11px; color: var(--c-muted); margin-top: 1px; }
-.funnel-wrap { display: flex; flex-direction: column; gap: 7px; }
-.funnel-label { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 3px; color: var(--c-text); }
-.funnel-bar-bg { background: var(--c-surface2); border-radius: 3px; height: 22px; overflow: hidden; }
-.funnel-bar-fill { height: 22px; border-radius: 3px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 600; color: #fff; }
 .legend-row { display: flex; flex-wrap: wrap; gap: 12px; }
 .leg-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--c-muted); }
 .leg-sq { width: 9px; height: 9px; border-radius: 2px; }
@@ -87,10 +93,58 @@ td.mono { font-family: var(--mono); font-size: 11px; }
 .tab-btn { background: none; border: none; cursor: pointer; padding: 4px 9px; border-radius: 6px; font-size: 11px; font-family: var(--font); color: var(--c-muted); font-weight: 500; }
 .tab-btn.active { background: var(--v-lightest); color: var(--v-primary); }
 .data-badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 600; background: rgba(0,180,90,0.12); color: var(--v-green); }
-@media (max-width: 768px) {
-  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-  .two-col, .one-two { grid-template-columns: 1fr; }
-  .platform-grid { grid-template-columns: repeat(2, 1fr); }
+/* Rankings distribution */
+.rankings-wrap { display: grid; grid-template-columns: 1fr 200px; gap: 16px; align-items: start; }
+.kw-summary { display: flex; flex-direction: column; gap: 10px; }
+.kw-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 10px; background: var(--c-surface2); border-radius: 8px; }
+.kw-row-left { display: flex; align-items: center; gap: 10px; }
+.kw-badge { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; }
+.kw-badge-info { flex: 1; }
+.kw-badge-label { font-size: 10px; color: var(--c-muted); font-weight: 500; }
+.kw-badge-val { font-size: 18px; font-weight: 700; color: var(--c-text); line-height: 1.2; }
+.kw-badge-right { font-size: 10px; color: var(--c-muted); text-align: right; }
+.kw-badge-newlost { display: flex; gap: 8px; font-size: 10px; }
+.kw-new { color: var(--v-green); }
+.kw-lost { color: var(--v-red); }
+/* Table scroll */
+.table-scroll { max-height: 500px; overflow-y: auto; }
+.table-scroll::-webkit-scrollbar { width: 4px; }
+.table-scroll::-webkit-scrollbar-track { background: transparent; }
+.table-scroll::-webkit-scrollbar-thumb { background: var(--c-border2); border-radius: 2px; }
+/* AI Citations */
+.ai-platform-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 20px; }
+.ai-platform-card { background: var(--c-surface); border: 0.5px solid var(--c-border); border-radius: 12px; padding: 16px; text-align: center; }
+.ai-platform-icon { font-size: 22px; margin-bottom: 6px; }
+.ai-platform-name { font-size: 11px; color: var(--c-muted); font-weight: 500; margin-bottom: 8px; }
+.ai-platform-count { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; color: var(--c-text); line-height: 1; }
+.ai-platform-change { font-size: 11px; color: var(--v-green); font-weight: 600; margin-top: 3px; }
+.ai-platform-pages { font-size: 11px; color: var(--c-muted); margin-top: 4px; }
+.ai-scan-btn { display: flex; align-items: center; gap: 8px; background: var(--v-primary); color: #fff; border: none; border-radius: 8px; padding: 10px 20px; font-size: 13px; font-family: var(--font); font-weight: 600; cursor: pointer; transition: opacity 0.15s; }
+.ai-scan-btn:hover { opacity: 0.88; }
+.ai-scan-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.ai-scan-btn .spinner { width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; display: none; }
+.ai-scan-btn.scanning .spinner { display: block; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.ai-progress { background: var(--c-surface2); border-radius: 6px; height: 6px; overflow: hidden; margin-top: 10px; display: none; }
+.ai-progress-bar { height: 100%; background: var(--v-primary); border-radius: 6px; transition: width 0.3s; width: 0%; }
+.category-bar { display: flex; flex-direction: column; gap: 6px; }
+.cat-row { display: grid; grid-template-columns: 100px 1fr 40px; align-items: center; gap: 8px; font-size: 11px; }
+.cat-bar-bg { background: var(--c-surface2); border-radius: 3px; height: 14px; overflow: hidden; }
+.cat-bar-fill { height: 14px; border-radius: 3px; background: var(--v-medium); transition: width 0.5s; }
+.mention-row { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 0.5px solid var(--c-border); }
+.mention-row:last-child { border-bottom: none; }
+.mention-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--v-green); flex-shrink: 0; margin-top: 4px; }
+.mention-prompt { font-size: 12px; font-weight: 500; color: var(--c-text); }
+.mention-snippet { font-size: 11px; color: var(--c-muted); margin-top: 3px; line-height: 1.5; }
+.mention-cat { font-size: 10px; padding: 1px 6px; background: var(--v-lightest); color: var(--v-medium); border-radius: 3px; font-weight: 600; flex-shrink: 0; }
+.scan-info { font-size: 11px; color: var(--c-muted); }
+@media (max-width: 900px) { .ai-platform-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .overview-grid { grid-template-columns: 1fr; }
+  .rankings-wrap { grid-template-columns: 1fr; }
+  .platform-grid { grid-template-columns: repeat(3, 1fr); }
+  .kpi-grid-2 { grid-template-columns: 1fr 1fr; }
+  .two-col { grid-template-columns: 1fr; }
   .nav { display: none; }
 }
 </style>
@@ -108,6 +162,7 @@ td.mono { font-family: var(--mono); font-size: 11px; }
       <button class="nav-btn" onclick="showSection('social',this)">Social</button>
       <button class="nav-btn" onclick="showSection('ads',this)">Ads</button>
       <button class="nav-btn" onclick="showSection('keywords',this)">Keywords</button>
+      <button class="nav-btn" onclick="showSection('ai-citations',this)">AI Citations</button>
     </nav>
   </div>
   <div style="display:flex;align-items:center;gap:10px;">
@@ -121,16 +176,45 @@ td.mono { font-family: var(--mono); font-size: 11px; }
 </div>
 
 <div class="content">
-  <!-- OVERVIEW -->
+
+  <!-- ═══════════ OVERVIEW ═══════════ -->
   <div id="sec-overview">
     <div class="section-label">Website Performance</div>
-    <div class="kpi-grid" style="margin-bottom:16px;">
-      <div class="kpi-card"><div class="kpi-label">Total sessions</div><div class="kpi-val" id="kpi-sessions">—</div><div class="kpi-sub" id="kpi-sessions-sub">Loading…</div></div>
-      <div class="kpi-card"><div class="kpi-label">Conversions</div><div class="kpi-val" id="kpi-conversions">—</div><div class="kpi-sub">vs prev period</div></div>
-      <div class="kpi-card"><div class="kpi-label">Avg. session duration</div><div class="kpi-val" id="kpi-duration">—</div><div class="kpi-sub">avg per session</div></div>
-      <div class="kpi-card"><div class="kpi-label">Bounce rate</div><div class="kpi-val" id="kpi-bounce">—</div><div class="kpi-sub">of all sessions</div></div>
+
+    <!-- 3-col: Funnel | Col-A | Col-B -->
+    <div class="overview-grid">
+
+      <!-- Funnel (left) -->
+      <div class="card" style="align-self:start;">
+        <div class="card-title">Conversion funnel</div>
+        <div class="funnel-wrap" id="funnelWrap">
+          <div><div class="funnel-label"><span>Visitors</span><span id="f-visitors">—</span></div><div class="funnel-bar-bg"><div class="funnel-bar-fill" id="f-bar1" style="width:100%;background:#190523;">—</div></div></div>
+          <div><div class="funnel-label"><span>Form views</span><span id="f-formviews">—</span></div><div class="funnel-bar-bg"><div class="funnel-bar-fill" id="f-bar2" style="width:50%;background:#50145A;">—</div></div></div>
+          <div><div class="funnel-label"><span>Form completions</span><span id="f-formcomp">—</span></div><div class="funnel-bar-bg"><div class="funnel-bar-fill" id="f-bar3" style="width:20%;background:#7742A8;">—</div></div></div>
+          <div><div class="funnel-label"><span>Email clicks</span><span id="f-email">—</span></div><div class="funnel-bar-bg"><div class="funnel-bar-fill" id="f-bar4" style="width:10%;background:#B978F5;">—</div></div></div>
+          <div><div class="funnel-label"><span>Phone clicks</span><span id="f-phone">—</span></div><div class="funnel-bar-bg"><div class="funnel-bar-fill" id="f-bar5" style="width:5%;background:#CC99FF;color:#50145A;">—</div></div></div>
+        </div>
+      </div>
+
+      <!-- Col A KPIs -->
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="kpi-card"><div class="kpi-label">Total sessions</div><div class="kpi-val" id="kpi-sessions">—</div><div class="kpi-sub">website visits</div></div>
+        <div class="kpi-card"><div class="kpi-label">Total form views</div><div class="kpi-val" id="kpi-form-views">—</div><div class="kpi-sub">form_start events</div></div>
+        <div class="kpi-card"><div class="kpi-label">Email link clicks</div><div class="kpi-val" id="kpi-email-clicks">—</div><div class="kpi-sub">email_click events</div></div>
+        <div class="kpi-card"><div class="kpi-label">Newsletter signups</div><div class="kpi-val" id="kpi-newsletter">—</div><div class="kpi-sub">newsletter_signup events</div></div>
+      </div>
+
+      <!-- Col B KPIs -->
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="kpi-card"><div class="kpi-label">Total conversions</div><div class="kpi-val" id="kpi-conversions">—</div><div class="kpi-sub">GA4 conversion events</div></div>
+        <div class="kpi-card"><div class="kpi-label">Total form completions</div><div class="kpi-val" id="kpi-form-completions">—</div><div class="kpi-sub">form_submit / generate_lead</div></div>
+        <div class="kpi-card"><div class="kpi-label">Phone link clicks</div><div class="kpi-val" id="kpi-phone-clicks">—</div><div class="kpi-sub">phone_call events</div></div>
+        <div class="kpi-card"><div class="kpi-label">Views: /kontakt-oss-kort/</div><div class="kpi-val" id="kpi-contact-views">—</div><div class="kpi-sub">contact page views</div></div>
+      </div>
     </div>
-    <div class="two-col" style="margin-bottom:14px;">
+
+    <!-- Sessions chart + Top pages -->
+    <div class="two-col" style="margin-bottom:16px;">
       <div class="card">
         <div class="card-title"><span>Sessions over time</span><div class="legend-row"><div class="leg-item"><div class="leg-sq" style="background:#7742A8;"></div>Sessions</div><div class="leg-item"><div class="leg-sq" style="background:#B978F5;"></div>Conversions</div></div></div>
         <div class="chart-wrap"><canvas id="sessionsChart"></canvas></div>
@@ -139,38 +223,63 @@ td.mono { font-family: var(--mono); font-size: 11px; }
         <div class="card-title"><span>Top pages by traffic</span></div>
         <table>
           <thead><tr><th>Page</th><th>Views</th><th>Conv %</th><th>Source</th></tr></thead>
-          <tbody id="pagesTable">
-            <tr><td colspan="4" style="color:var(--c-hint);text-align:center;padding:16px;">Loading…</td></tr>
-          </tbody>
+          <tbody id="pagesTable"><tr><td colspan="4" style="color:var(--c-hint);text-align:center;padding:16px;">Loading…</td></tr></tbody>
         </table>
       </div>
     </div>
-    <div class="section-label">Conversion Tracking</div>
-    <div class="kpi-grid" style="margin-bottom:14px;">
-      <div class="kpi-card"><div class="kpi-label">Newsletter signups</div><div class="kpi-val">1,043</div><div class="kpi-sub"><span class="up">+22%</span></div></div>
-      <div class="kpi-card"><div class="kpi-label">Form completions</div><div class="kpi-val">872</div><div class="kpi-sub"><span class="up">+5%</span></div></div>
-      <div class="kpi-card"><div class="kpi-label">Email link clicks</div><div class="kpi-val">318</div><div class="kpi-sub"><span class="down">−3%</span></div></div>
-      <div class="kpi-card"><div class="kpi-label">Phone link clicks</div><div class="kpi-val">211</div><div class="kpi-sub"><span class="up">+9%</span></div></div>
-    </div>
-    <div class="one-two">
-      <div class="card">
-        <div class="card-title">Conversion funnel</div>
-        <div class="funnel-wrap">
-          <div><div class="funnel-label"><span>Visitors</span><span>84,210</span></div><div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:100%;background:#190523;">100%</div></div></div>
-          <div><div class="funnel-label"><span>Page engaged</span><span>52,300</span></div><div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:62%;background:#50145A;">62%</div></div></div>
-          <div><div class="funnel-label"><span>CTA clicked</span><span>18,400</span></div><div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:22%;background:#7742A8;">22%</div></div></div>
-          <div><div class="funnel-label"><span>Form started</span><span>6,200</span></div><div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:7.4%;background:#B978F5;">7.4%</div></div></div>
-          <div><div class="funnel-label"><span>Converted</span><span>3,182</span></div><div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:3.8%;background:#CC99FF;color:#50145A;">3.8%</div></div></div>
+
+    <!-- Rankings Distribution -->
+    <div class="section-label">Rankings Distribution</div>
+    <div class="card">
+      <div class="rankings-wrap">
+        <div>
+          <div class="card-title">
+            <span>Keyword positions over time</span>
+            <div class="legend-row">
+              <div class="leg-item"><div class="leg-sq" style="background:#F5A623;"></div>#1–3</div>
+              <div class="leg-item"><div class="leg-sq" style="background:#4A90D9;"></div>#4–10</div>
+              <div class="leg-item"><div class="leg-sq" style="background:#7EC8E3;"></div>#11–20</div>
+              <div class="leg-item"><div class="leg-sq" style="background:#C8E6F5;"></div>#21–100</div>
+            </div>
+          </div>
+          <div class="chart-wrap-md"><canvas id="rankingsChart"></canvas></div>
         </div>
-      </div>
-      <div class="card">
-        <div class="card-title"><span>Conversion trends</span><div class="legend-row"><div class="leg-item"><div class="leg-sq" style="background:#50145A;"></div>Signups</div><div class="leg-item"><div class="leg-sq" style="background:#B978F5;"></div>Forms</div></div></div>
-        <div class="chart-wrap"><canvas id="convChart"></canvas></div>
+        <div>
+          <div class="card-title">Keywords</div>
+          <div class="kw-summary" id="kwSummary">
+            <div class="kw-row"><div class="kw-row-left"><div class="kw-badge" style="background:rgba(245,166,35,0.15);color:#F5A623;">3</div><div class="kw-badge-info"><div class="kw-badge-label">Top 3</div><div class="kw-badge-val" id="kw-top3">—</div></div></div></div>
+            <div class="kw-row"><div class="kw-row-left"><div class="kw-badge" style="background:rgba(74,144,217,0.15);color:#4A90D9;">10</div><div class="kw-badge-info"><div class="kw-badge-label">Top 10</div><div class="kw-badge-val" id="kw-top10">—</div></div></div></div>
+            <div class="kw-row"><div class="kw-row-left"><div class="kw-badge" style="background:rgba(126,200,227,0.15);color:#7EC8E3;">20</div><div class="kw-badge-info"><div class="kw-badge-label">Top 20</div><div class="kw-badge-val" id="kw-top20">—</div></div></div></div>
+            <div class="kw-row"><div class="kw-row-left"><div class="kw-badge" style="background:rgba(200,230,245,0.3);color:#888;">100</div><div class="kw-badge-info"><div class="kw-badge-label">Top 100</div><div class="kw-badge-val" id="kw-top100">—</div></div></div></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- SEO -->
+    <!-- Web Conversions Charts -->
+    <div class="section-label">Web Conversions</div>
+    <div class="two-col" style="margin-bottom:4px;">
+      <!-- By Channel -->
+      <div class="card">
+        <div class="card-title">
+          <span>By channel grouping</span>
+          <span class="data-badge">Live data</span>
+        </div>
+        <div style="position:relative;width:100%;height:220px;"><canvas id="convChannelChart"></canvas></div>
+      </div>
+      <!-- By Event Name -->
+      <div class="card">
+        <div class="card-title">
+          <span>By event name</span>
+          <span class="data-badge">Live data</span>
+        </div>
+        <div style="position:relative;width:100%;height:220px;"><canvas id="convEventChart"></canvas></div>
+      </div>
+    </div>
+  </div><!-- end sec-overview -->
+
+  <!-- ═══════════ SEO ═══════════ -->
   <div id="sec-seo" style="display:none;">
     <div class="section-label">SEO Health</div>
     <div class="kpi-grid" style="margin-bottom:14px;">
@@ -198,19 +307,31 @@ td.mono { font-family: var(--mono); font-size: 11px; }
     </div>
   </div>
 
-  <!-- SOCIAL -->
+  <!-- ═══════════ SOCIAL ═══════════ -->
   <div id="sec-social" style="display:none;">
     <div class="section-label">Social Media Overview</div>
+    <!-- 5 platforms: LinkedIn, Instagram, Facebook, YouTube, TikTok -->
     <div class="platform-grid" style="margin-bottom:14px;">
       <div class="platform-card"><div class="platform-name">LinkedIn</div><div class="platform-val">42.1K</div><div class="platform-eng"><span class="up">+3.8% eng</span></div></div>
       <div class="platform-card"><div class="platform-name">Instagram</div><div class="platform-val">28.4K</div><div class="platform-eng"><span class="up">+5.2% eng</span></div></div>
       <div class="platform-card"><div class="platform-name">Facebook</div><div class="platform-val">61.0K</div><div class="platform-eng"><span class="down">−1.9% eng</span></div></div>
       <div class="platform-card"><div class="platform-name">YouTube</div><div class="platform-val">18.7K</div><div class="platform-eng"><span class="up">+6.1% eng</span></div></div>
       <div class="platform-card"><div class="platform-name">TikTok</div><div class="platform-val">12.3K</div><div class="platform-eng"><span class="up">+8.4% eng</span></div></div>
-      <div class="platform-card"><div class="platform-name">X (Twitter)</div><div class="platform-val">9.1K</div><div class="platform-eng"><span class="down">−1.2% eng</span></div></div>
-      <div class="platform-card"><div class="platform-name">Pinterest</div><div class="platform-val">5.6K</div><div class="platform-eng"><span class="up">+2.7% eng</span></div></div>
-      <div class="platform-card"><div class="platform-name">Snapchat</div><div class="platform-val">3.2K</div><div class="platform-eng"><span class="up">+4.1% eng</span></div></div>
     </div>
+
+    <!-- How to connect notice -->
+    <div class="card" style="margin-bottom:14px;background:var(--v-lightest);border-color:var(--v-lighter);">
+      <div class="card-title" style="color:var(--v-primary);margin-bottom:8px;">📡 How to connect real social data</div>
+      <div style="font-size:12px;color:var(--c-muted);line-height:1.7;">
+        Each platform requires its own API connection. Here's how:<br>
+        <strong style="color:var(--c-text);">LinkedIn:</strong> LinkedIn Marketing API — requires a Company Page Admin account + app approval at developer.linkedin.com<br>
+        <strong style="color:var(--c-text);">Facebook &amp; Instagram:</strong> Meta Graph API — connect via business.facebook.com → Settings → Instagram/Facebook Insights<br>
+        <strong style="color:var(--c-text);">YouTube:</strong> YouTube Data API v3 — enable at console.cloud.google.com (same project as GA4) → add to anna-view-ai-bot service account<br>
+        <strong style="color:var(--c-text);">TikTok:</strong> TikTok Business API — apply at developers.tiktok.com/products/business-api (requires business account)<br>
+        <em>Once connected, views will replace the placeholder numbers above.</em>
+      </div>
+    </div>
+
     <div class="two-col">
       <div class="card">
         <div class="card-title"><span>Follower growth</span><div class="legend-row"><div class="leg-item"><div class="leg-sq" style="background:#50145A;"></div>LinkedIn</div><div class="leg-item"><div class="leg-sq" style="background:#7742A8;"></div>Instagram</div><div class="leg-item"><div class="leg-sq" style="background:#B978F5;"></div>YouTube</div></div></div>
@@ -223,7 +344,7 @@ td.mono { font-family: var(--mono); font-size: 11px; }
     </div>
   </div>
 
-  <!-- ADS -->
+  <!-- ═══════════ ADS ═══════════ -->
   <div id="sec-ads" style="display:none;">
     <div class="section-label">Google Ads Performance</div>
     <div class="kpi-grid" style="margin-bottom:14px;">
@@ -235,28 +356,22 @@ td.mono { font-family: var(--mono); font-size: 11px; }
     <div class="two-col" style="margin-bottom:14px;">
       <div class="card">
         <div class="card-title">Top by impressions</div>
-        <table>
-          <thead><tr><th>Campaign</th><th>Impressions</th><th>CTR</th></tr></thead>
-          <tbody>
-            <tr><td>Brand Awareness</td><td class="mono">580K</td><td class="mono">0.9%</td></tr>
-            <tr><td>Product — Analytics</td><td class="mono">310K</td><td class="mono">2.1%</td></tr>
-            <tr><td>Retargeting</td><td class="mono">290K</td><td class="mono">3.4%</td></tr>
-            <tr><td>Competitor KW</td><td class="mono">210K</td><td class="mono">1.6%</td></tr>
-            <tr><td>Blog Promotion</td><td class="mono">180K</td><td class="mono">0.7%</td></tr>
-          </tbody>
-        </table>
+        <table><thead><tr><th>Campaign</th><th>Impressions</th><th>CTR</th></tr></thead><tbody>
+          <tr><td>Brand Awareness</td><td class="mono">580K</td><td class="mono">0.9%</td></tr>
+          <tr><td>Product — Analytics</td><td class="mono">310K</td><td class="mono">2.1%</td></tr>
+          <tr><td>Retargeting</td><td class="mono">290K</td><td class="mono">3.4%</td></tr>
+          <tr><td>Competitor KW</td><td class="mono">210K</td><td class="mono">1.6%</td></tr>
+          <tr><td>Blog Promotion</td><td class="mono">180K</td><td class="mono">0.7%</td></tr>
+        </tbody></table>
       </div>
       <div class="card">
         <div class="card-title">Top by clicks</div>
-        <table>
-          <thead><tr><th>Campaign</th><th>Clicks</th><th>Conv %</th><th>CPC</th></tr></thead>
-          <tbody>
-            <tr><td>Product — Analytics</td><td class="mono">8,420</td><td class="mono">4.1%</td><td class="mono">$0.31</td></tr>
-            <tr><td>Retargeting</td><td class="mono">6,210</td><td class="mono">5.8%</td><td class="mono">$0.28</td></tr>
-            <tr><td>Brand Awareness</td><td class="mono">5,230</td><td class="mono">3.2%</td><td class="mono">$0.41</td></tr>
-            <tr><td>Competitor KW</td><td class="mono">3,360</td><td class="mono">2.9%</td><td class="mono">$0.58</td></tr>
-          </tbody>
-        </table>
+        <table><thead><tr><th>Campaign</th><th>Clicks</th><th>Conv %</th><th>CPC</th></tr></thead><tbody>
+          <tr><td>Product — Analytics</td><td class="mono">8,420</td><td class="mono">4.1%</td><td class="mono">$0.31</td></tr>
+          <tr><td>Retargeting</td><td class="mono">6,210</td><td class="mono">5.8%</td><td class="mono">$0.28</td></tr>
+          <tr><td>Brand Awareness</td><td class="mono">5,230</td><td class="mono">3.2%</td><td class="mono">$0.41</td></tr>
+          <tr><td>Competitor KW</td><td class="mono">3,360</td><td class="mono">2.9%</td><td class="mono">$0.58</td></tr>
+        </tbody></table>
       </div>
     </div>
     <div class="card">
@@ -265,19 +380,31 @@ td.mono { font-family: var(--mono); font-size: 11px; }
     </div>
   </div>
 
-  <!-- KEYWORDS -->
+  <!-- ═══════════ KEYWORDS ═══════════ -->
   <div id="sec-keywords" style="display:none;">
     <div class="section-label" style="display:flex;align-items:center;gap:8px;">
       Search Keywords &amp; Queries
       <span id="kwDataBadge" class="data-badge" style="display:none;">Live data</span>
     </div>
-    <!-- SC Summary KPIs -->
-    <div class="kpi-grid" style="margin-bottom:14px;" id="scKpiGrid">
+    <div class="kpi-grid" style="margin-bottom:14px;">
       <div class="kpi-card"><div class="kpi-label">Total clicks</div><div class="kpi-val" id="sc-clicks">—</div><div class="kpi-sub">from Search Console</div></div>
       <div class="kpi-card"><div class="kpi-label">Total impressions</div><div class="kpi-val" id="sc-impressions">—</div><div class="kpi-sub">from Search Console</div></div>
       <div class="kpi-card"><div class="kpi-label">Avg. CTR</div><div class="kpi-val" id="sc-ctr">—</div><div class="kpi-sub">click-through rate</div></div>
       <div class="kpi-card"><div class="kpi-label">Avg. position</div><div class="kpi-val" id="sc-position">—</div><div class="kpi-sub">avg. ranking position</div></div>
     </div>
+
+    <!-- Top pages with search terms (50 rows) -->
+    <div class="card" style="margin-bottom:14px;">
+      <div class="card-title"><span>Top 50 landing pages</span><span class="data-badge" style="display:inline-block;">Search Console</span></div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Landing page</th><th>Search term</th><th>Views (impr.)</th><th>Clicks</th><th>CTR</th><th>Pos.</th></tr></thead>
+          <tbody id="scPagesTable"><tr><td colspan="6" style="color:var(--c-hint);text-align:center;padding:16px;">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Keywords + Long tail -->
     <div class="two-col" style="margin-bottom:14px;">
       <div class="card">
         <div class="card-title">
@@ -290,18 +417,14 @@ td.mono { font-family: var(--mono); font-size: 11px; }
         </div>
         <table>
           <thead><tr><th>Keyword</th><th>Clicks</th><th>Impr.</th><th>CTR</th><th>Pos.</th></tr></thead>
-          <tbody id="kwBody">
-            <tr><td colspan="5" style="color:var(--c-hint);text-align:center;padding:16px;">Loading…</td></tr>
-          </tbody>
+          <tbody id="kwBody"><tr><td colspan="5" style="color:var(--c-hint);text-align:center;padding:16px;">Loading…</td></tr></tbody>
         </table>
       </div>
       <div class="card">
         <div class="card-title">Long-tail queries</div>
         <table>
           <thead><tr><th>Query</th><th>Clicks</th><th>CTR</th></tr></thead>
-          <tbody id="ltTable">
-            <tr><td colspan="3" style="color:var(--c-hint);text-align:center;padding:16px;">Loading…</td></tr>
-          </tbody>
+          <tbody id="ltTable"><tr><td colspan="3" style="color:var(--c-hint);text-align:center;padding:16px;">Loading…</td></tr></tbody>
         </table>
       </div>
     </div>
@@ -310,6 +433,116 @@ td.mono { font-family: var(--mono); font-size: 11px; }
       <div class="chart-wrap-md"><canvas id="kwChart"></canvas></div>
     </div>
   </div>
+
+  <!-- ═══════════ AI CITATIONS ═══════════ -->
+  <div id="sec-ai-citations" style="display:none;">
+    <div class="section-label" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+      <span>AI Citations — LLM Visibility</span>
+    </div>
+
+    <!-- Scan controls -->
+    <div class="card" style="margin-bottom:16px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <div>
+          <div style="font-size:13px;font-weight:600;margin-bottom:4px;">Scan VIEW Group visibility across AI</div>
+          <div class="scan-info" id="lastScanTime">Never scanned — click to run your first scan</div>
+        </div>
+        <div>
+          <button class="ai-scan-btn" id="scanBtn" onclick="runAiScan()">
+            <span class="spinner"></span>
+            <span id="scanBtnText">▶ Run scan now</span>
+          </button>
+          <div class="ai-progress" id="aiProgress"><div class="ai-progress-bar" id="aiProgressBar"></div></div>
+        </div>
+      </div>
+      <div style="margin-top:10px;padding-top:10px;border-top:0.5px solid var(--c-border);font-size:11px;color:var(--c-muted);">
+        Queries Claude with <strong>30 prompts</strong> across Accounting, Payroll, ERP, and IT topics in Norwegian &amp; English.
+        Each scan takes ~1–2 minutes. Results are stored so you can track changes over time.
+      </div>
+    </div>
+
+    <!-- Platform cards (like Ahrefs screenshot) -->
+    <div class="section-label">Mentions by AI Platform (via Claude)</div>
+    <div class="ai-platform-grid" style="margin-bottom:16px;">
+      <div class="ai-platform-card">
+        <div class="ai-platform-icon">🤖</div>
+        <div class="ai-platform-name">Claude (Anthropic)</div>
+        <div class="ai-platform-count" id="ai-count-claude">—</div>
+        <div class="ai-platform-change" id="ai-change-claude"></div>
+        <div class="ai-platform-pages" id="ai-pages-claude"></div>
+      </div>
+      <div class="ai-platform-card" style="opacity:0.5;">
+        <div class="ai-platform-icon">✦</div>
+        <div class="ai-platform-name">Gemini</div>
+        <div class="ai-platform-count">—</div>
+        <div class="ai-platform-pages" style="font-size:10px;">API not connected</div>
+      </div>
+      <div class="ai-platform-card" style="opacity:0.5;">
+        <div class="ai-platform-icon">⊕</div>
+        <div class="ai-platform-name">ChatGPT</div>
+        <div class="ai-platform-count">—</div>
+        <div class="ai-platform-pages" style="font-size:10px;">API not connected</div>
+      </div>
+      <div class="ai-platform-card" style="opacity:0.5;">
+        <div class="ai-platform-icon">⁂</div>
+        <div class="ai-platform-name">Perplexity</div>
+        <div class="ai-platform-count">—</div>
+        <div class="ai-platform-pages" style="font-size:10px;">API not connected</div>
+      </div>
+      <div class="ai-platform-card" style="opacity:0.5;">
+        <div class="ai-platform-icon">◈</div>
+        <div class="ai-platform-name">Copilot</div>
+        <div class="ai-platform-count">—</div>
+        <div class="ai-platform-pages" style="font-size:10px;">API not connected</div>
+      </div>
+    </div>
+
+    <!-- Results grid -->
+    <div class="two-col" style="margin-bottom:16px;">
+
+      <!-- Mentions by category -->
+      <div class="card">
+        <div class="card-title">Mentions by category</div>
+        <div class="category-bar" id="categoryBars">
+          <div class="cat-row"><span style="color:var(--c-muted);">Accounting</span><div class="cat-bar-bg"><div class="cat-bar-fill" id="cat-accounting" style="width:0%;"></div></div><span id="cat-accounting-n" class="mono">—</span></div>
+          <div class="cat-row"><span style="color:var(--c-muted);">Payroll</span><div class="cat-bar-bg"><div class="cat-bar-fill" id="cat-payroll" style="width:0%;"></div></div><span id="cat-payroll-n" class="mono">—</span></div>
+          <div class="cat-row"><span style="color:var(--c-muted);">ERP</span><div class="cat-bar-bg"><div class="cat-bar-fill" id="cat-erp" style="width:0%;"></div></div><span id="cat-erp-n" class="mono">—</span></div>
+          <div class="cat-row"><span style="color:var(--c-muted);">IT</span><div class="cat-bar-bg"><div class="cat-bar-fill" id="cat-it" style="width:0%;"></div></div><span id="cat-it-n" class="mono">—</span></div>
+        </div>
+
+        <div style="margin-top:16px;">
+          <div class="card-title" style="font-size:12px;margin-bottom:8px;">Scan history</div>
+          <table>
+            <thead><tr><th>Date</th><th>Mentions</th><th>Pages</th></tr></thead>
+            <tbody id="scanHistoryTable">
+              <tr><td colspan="3" style="color:var(--c-hint);text-align:center;padding:12px;">No scan history yet</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Prompts that got a mention -->
+      <div class="card">
+        <div class="card-title" id="mentionsTitle">Prompts where VIEW Group was mentioned</div>
+        <div style="max-height:400px;overflow-y:auto;" id="mentionsList">
+          <div style="color:var(--c-hint);text-align:center;padding:24px;font-size:12px;">Run a scan to see which prompts mention VIEW Group</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add more platforms info card -->
+    <div class="card" style="background:var(--v-lightest);border-color:var(--v-lighter);">
+      <div class="card-title" style="color:var(--v-primary);margin-bottom:8px;">🔌 Connect more AI platforms</div>
+      <div style="font-size:12px;color:var(--c-muted);line-height:1.8;">
+        <strong style="color:var(--c-text);">ChatGPT (OpenAI):</strong> Add <code>OPENAI_API_KEY</code> to Vercel environment variables — I can add ChatGPT scanning immediately.<br>
+        <strong style="color:var(--c-text);">Gemini:</strong> Add <code>GEMINI_API_KEY</code> from Google AI Studio (free tier available) — I can wire this up.<br>
+        <strong style="color:var(--c-text);">Perplexity:</strong> Add <code>PERPLEXITY_API_KEY</code> from perplexity.ai/settings/api — $5 free credit to start.<br>
+        <strong style="color:var(--c-text);">Copilot:</strong> Requires Azure OpenAI — more complex setup.<br>
+        <em>Each platform you add gives a separate mention count. Just let me know and I'll add the scanning logic.</em>
+      </div>
+    </div>
+  </div>
+
 </div><!-- end content -->
 
 <script>
@@ -335,15 +568,48 @@ const baseOpts = {
   }
 };
 
+function renderConvCharts(convByChannel, convByEvent) {
+  // Channel chart (horizontal bar)
+  if (convByChannel && convByChannel.length) {
+    mk('convChannelChart', { type:'bar', data:{
+      labels: convByChannel.map(c => c.channel),
+      datasets:[{ data: convByChannel.map(c => c.conversions), backgroundColor:'rgba(185,120,245,0.6)', borderColor:'#7742A8', borderWidth:1, borderRadius:3 }]
+    }, options:{ ...baseOpts, indexAxis:'y', plugins:{ legend:{ display:false }, datalabels:{ display:false } }, scales:{
+      x:{ ...baseOpts.scales.x, grid:{ color:'rgba(128,128,128,0.1)' } },
+      y:{ grid:{ display:false }, ticks:{ font:{ size:11 }, color:'#444' } }
+    }}});
+  }
+  // Event name chart (horizontal bar)
+  if (convByEvent && convByEvent.length) {
+    mk('convEventChart', { type:'bar', data:{
+      labels: convByEvent.map(e => e.event),
+      datasets:[{ data: convByEvent.map(e => e.conversions), backgroundColor:'#7742A8', borderRadius:3 }]
+    }, options:{ ...baseOpts, indexAxis:'y', plugins:{ legend:{ display:false } }, scales:{
+      x:{ ...baseOpts.scales.x, grid:{ color:'rgba(128,128,128,0.1)' } },
+      y:{ grid:{ display:false }, ticks:{ font:{ size:10 }, color:'#444' } }
+    }}});
+  }
+}
+
 function initOverview() {
   mk('sessionsChart', { type:'line', data:{ labels:LBLS, datasets:[
     { data:randArr(6000,12000,8), borderColor:'#7742A8', backgroundColor:'rgba(119,66,168,0.08)', tension:0.4, fill:true, pointRadius:3 },
     { data:randArr(200,500,8), borderColor:'#B978F5', backgroundColor:'rgba(185,120,245,0.07)', tension:0.4, fill:true, pointRadius:3, yAxisID:'y2' }
   ]}, options:{ ...baseOpts, scales:{ ...baseOpts.scales, y2:{ position:'right', grid:{ display:false }, ticks:{ font:{ size:10 }, color:'#888' } } } } });
-  mk('convChart', { type:'bar', data:{ labels:LBLS, datasets:[
-    { data:randArr(60,160,8), backgroundColor:'#50145A', borderRadius:4 },
-    { data:randArr(40,100,8), backgroundColor:'#B978F5', borderRadius:4 }
-  ]}, options:{ ...baseOpts, scales:{ x:{ ...baseOpts.scales.x, stacked:true }, y:{ ...baseOpts.scales.y, stacked:true } } } });
+
+  // Rankings chart - placeholder until real data
+  mk('rankingsChart', { type:'bar', data:{
+    labels:['Day 1','Day 2','Day 3','Day 4','Day 5','Day 6','Day 7'],
+    datasets:[
+      { label:'#1-3', data:[10,10,9,10,10,10,10], backgroundColor:'#F5A623', stack:'s' },
+      { label:'#4-10', data:[6,6,7,7,7,6,7], backgroundColor:'#4A90D9', stack:'s' },
+      { label:'#11-20', data:[4,4,3,4,4,4,4], backgroundColor:'#7EC8E3', stack:'s' },
+      { label:'#21-100', data:[3,3,4,3,3,3,3], backgroundColor:'#C8E6F5', stack:'s' },
+    ]
+  }, options:{ ...baseOpts, plugins:{ legend:{ display:false } }, scales:{
+    x:{ ...baseOpts.scales.x, stacked:true },
+    y:{ ...baseOpts.scales.y, stacked:true, ticks:{ ...baseOpts.scales.y.ticks, stepSize:5 } }
+  }}});
 }
 
 function initSeo() {
@@ -353,12 +619,13 @@ function initSeo() {
 }
 
 function initSocial() {
+  const LBLS5 = ['LinkedIn','Instagram','Facebook','YouTube','TikTok'];
   mk('socialChart', { type:'line', data:{ labels:LBLS, datasets:[
     { data:randArr(38000,43000,8), borderColor:'#50145A', tension:0.4, pointRadius:2, fill:false },
     { data:randArr(24000,30000,8), borderColor:'#7742A8', tension:0.4, pointRadius:2, fill:false },
     { data:randArr(16000,20000,8), borderColor:'#B978F5', tension:0.4, pointRadius:2, fill:false }
   ]}, options:baseOpts });
-  mk('engChart', { type:'bar', data:{ labels:['LinkedIn','Instagram','Facebook','YouTube','TikTok','X'], datasets:[{ data:[3.8,5.2,1.9,6.1,8.4,1.2], backgroundColor:PURPLES, borderRadius:4 }] }, options:{ ...baseOpts, scales:{ ...baseOpts.scales, y:{ ...baseOpts.scales.y, ticks:{ ...baseOpts.scales.y.ticks, callback:v=>v+'%' } } } } });
+  mk('engChart', { type:'bar', data:{ labels:LBLS5, datasets:[{ data:[3.8,5.2,1.9,6.1,8.4], backgroundColor:PURPLES, borderRadius:4 }] }, options:{ ...baseOpts, scales:{ ...baseOpts.scales, y:{ ...baseOpts.scales.y, ticks:{ ...baseOpts.scales.y.ticks, callback:v=>v+'%' } } } } });
 }
 
 function initAds() {
@@ -369,20 +636,8 @@ function initAds() {
 }
 
 // ── KEYWORD STATE ─────────────────────────────────────────────────────
-// Real data from API (null until loaded)
 let realSearchData = null;
 let kwFilter = 'all';
-
-// Fallback mock data (used only if API hasn't loaded yet)
-const mockKw = [
-  {keyword:'marketing dashboard',clicks:1840,impressions:22400,ctr:'8.2%',position:'1.2',type:'brand'},
-  {keyword:'analytics software',clicks:1210,impressions:31200,ctr:'3.9%',position:'3.4',type:'nonbrand'},
-  {keyword:'view-ai',clicks:980,impressions:8200,ctr:'12.0%',position:'1.0',type:'brand'},
-  {keyword:'seo tracking tool',clicks:870,impressions:19400,ctr:'4.5%',position:'4.1',type:'nonbrand'},
-  {keyword:'conversion rate tool',clicks:640,impressions:14800,ctr:'4.3%',position:'5.2',type:'nonbrand'},
-  {keyword:'view-ai pricing',clicks:520,impressions:4100,ctr:'12.7%',position:'1.1',type:'brand'},
-  {keyword:'website analytics',clicks:480,impressions:28100,ctr:'1.7%',position:'7.3',type:'nonbrand'},
-];
 
 function filterKw(type, btn) {
   kwFilter = type;
@@ -392,34 +647,22 @@ function filterKw(type, btn) {
 }
 
 function renderKw() {
-  const source = realSearchData?.keywords || mockKw;
+  const source = realSearchData?.keywords || [];
   const data = kwFilter === 'all' ? source : source.filter(k => k.type === kwFilter);
   document.getElementById('kwBody').innerHTML = data.length
-    ? data.map(k => `<tr>
-        <td>${k.keyword}</td>
-        <td class="mono">${(k.clicks||0).toLocaleString()}</td>
-        <td class="mono">${(k.impressions||0).toLocaleString()}</td>
-        <td class="mono">${k.ctr||'—'}</td>
-        <td class="mono">${k.position||'—'}</td>
-      </tr>`).join('')
-    : `<tr><td colspan="5" style="color:var(--c-hint);text-align:center;padding:12px;">No data for this filter</td></tr>`;
+    ? data.map(k => `<tr><td>${k.keyword}</td><td class="mono">${(k.clicks||0).toLocaleString()}</td><td class="mono">${(k.impressions||0).toLocaleString()}</td><td class="mono">${k.ctr||'—'}</td><td class="mono">${k.position||'—'}</td></tr>`).join('')
+    : `<tr><td colspan="5" style="color:var(--c-hint);text-align:center;padding:12px;">No data</td></tr>`;
 }
 
 function renderLongTail() {
   const lt = realSearchData?.longTail;
-  const ltTable = document.getElementById('ltTable');
-  if (!ltTable) return;
+  const el = document.getElementById('ltTable');
+  if (!el) return;
   if (lt && lt.length > 0) {
-    ltTable.innerHTML = lt.map(k => `<tr>
-      <td>${k.keyword}</td>
-      <td class="mono">${k.clicks}</td>
-      <td class="mono">${k.ctr}</td>
-    </tr>`).join('');
+    el.innerHTML = lt.map(k => `<tr><td>${k.keyword}</td><td class="mono">${k.clicks}</td><td class="mono">${k.ctr}</td></tr>`).join('');
   } else if (realSearchData) {
-    // API loaded but no long-tail queries this period
-    ltTable.innerHTML = `<tr><td colspan="3" style="color:var(--c-hint);text-align:center;padding:12px;">No long-tail queries this period</td></tr>`;
+    el.innerHTML = `<tr><td colspan="3" style="color:var(--c-hint);text-align:center;padding:12px;">No long-tail queries this period</td></tr>`;
   }
-  // If realSearchData is null, leave as "Loading..."
 }
 
 function renderScKpis() {
@@ -431,29 +674,76 @@ function renderScKpis() {
   document.getElementById('sc-position').textContent = s.avgPosition || '—';
 }
 
+function renderScPages() {
+  const pages = realSearchData?.topPages;
+  const el = document.getElementById('scPagesTable');
+  if (!el) return;
+  if (pages && pages.length > 0) {
+    el.innerHTML = pages.map(p => `<tr>
+      <td class="page-cell" title="${p.page}">${p.page}</td>
+      <td class="query-cell" title="${p.topQuery||'—'}">${p.topQuery||'—'}</td>
+      <td class="mono">${(p.impressions||0).toLocaleString()}</td>
+      <td class="mono">${(p.clicks||0).toLocaleString()}</td>
+      <td class="mono">${p.ctr||'—'}</td>
+      <td class="mono">${p.position||'—'}</td>
+    </tr>`).join('');
+  } else if (realSearchData) {
+    el.innerHTML = `<tr><td colspan="6" style="color:var(--c-hint);text-align:center;padding:12px;">No page data available</td></tr>`;
+  }
+}
+
+function renderRankings() {
+  const trend = realSearchData?.rankingsTrend;
+  const summary = realSearchData?.kwSummary;
+
+  if (summary) {
+    document.getElementById('kw-top3').textContent = summary.top3 || '—';
+    document.getElementById('kw-top10').textContent = summary.top10 || '—';
+    document.getElementById('kw-top20').textContent = summary.top20 || '—';
+    document.getElementById('kw-top100').textContent = summary.top100 || '—';
+  }
+
+  if (trend && trend.length > 0) {
+    const labels = trend.map(d => {
+      const dt = new Date(d.date);
+      return (dt.getMonth()+1) + '/' + dt.getDate();
+    });
+    mk('rankingsChart', { type:'bar', data:{
+      labels,
+      datasets:[
+        { label:'#1-3',   data:trend.map(d=>d.top3),   backgroundColor:'#F5A623', stack:'s' },
+        { label:'#4-10',  data:trend.map(d=>d.top10),  backgroundColor:'#4A90D9', stack:'s' },
+        { label:'#11-20', data:trend.map(d=>d.top20),  backgroundColor:'#7EC8E3', stack:'s' },
+        { label:'#21-100',data:trend.map(d=>d.top100), backgroundColor:'#C8E6F5', stack:'s' },
+      ]
+    }, options:{ ...baseOpts, plugins:{ legend:{ display:false } }, scales:{
+      x:{ ...baseOpts.scales.x, stacked:true },
+      y:{ ...baseOpts.scales.y, stacked:true, ticks:{ ...baseOpts.scales.y.ticks, stepSize:5 } }
+    }}});
+  }
+}
+
 function initKeywords() {
   renderScKpis();
   renderKw();
   renderLongTail();
+  renderScPages();
+  renderRankings();
 
-  // Build doughnut with real data if available
-  const source = realSearchData?.keywords || mockKw;
-  const brandClicks = source.filter(k=>k.type==='brand').reduce((s,k)=>s+k.clicks,0);
-  const nonbrandClicks = source.filter(k=>k.type==='nonbrand').reduce((s,k)=>s+k.clicks,0);
-  const ltClicks = (realSearchData?.longTail||[]).reduce((s,k)=>s+k.clicks,0);
-  const total = brandClicks + nonbrandClicks + ltClicks || 1;
-  const bp = Math.round(brandClicks/total*100);
-  const np = Math.round(nonbrandClicks/total*100);
-  const lp = 100 - bp - np;
-
+  const source = realSearchData?.keywords || [];
+  const bc = source.filter(k=>k.type==='brand').reduce((s,k)=>s+k.clicks,0);
+  const nc = source.filter(k=>k.type==='nonbrand').reduce((s,k)=>s+k.clicks,0);
+  const lc = (realSearchData?.longTail||[]).reduce((s,k)=>s+k.clicks,0);
+  const total = bc + nc + lc || 1;
+  const bp = Math.round(bc/total*100), np = Math.round(nc/total*100), lp = 100-bp-np;
   mk('kwChart', { type:'doughnut', data:{
-    labels:[`Brand ${bp}%`, `Non-brand ${np}%`, `Long-tail ${lp}%`],
-    datasets:[{ data:[brandClicks||44, nonbrandClicks||51, ltClicks||5], backgroundColor:['#50145A','#7742A8','#DCBEFA'], borderWidth:0, hoverOffset:4 }]
+    labels:[`Brand ${bp}%`,`Non-brand ${np}%`,`Long-tail ${lp}%`],
+    datasets:[{ data:[bc||97,nc||3,lc||0], backgroundColor:['#50145A','#7742A8','#DCBEFA'], borderWidth:0, hoverOffset:4 }]
   }, options:{ responsive:true, maintainAspectRatio:false, cutout:'60%', plugins:{ legend:{ display:true, position:'right', labels:{ font:{ size:11 }, color:'#888', boxWidth:12, padding:12 } } } } });
 }
 
-const sections = ['overview','seo','social','ads','keywords'];
-const initFns = { overview:initOverview, seo:initSeo, social:initSocial, ads:initAds, keywords:initKeywords };
+const sections = ['overview','seo','social','ads','keywords','ai-citations'];
+const initFns = { overview:initOverview, seo:initSeo, social:initSocial, ads:initAds, keywords:initKeywords, 'ai-citations': initAiCitations };
 let current = 'overview';
 
 function showSection(s, btn) {
@@ -461,6 +751,11 @@ function showSection(s, btn) {
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
   current = s;
+  // Rebuild charts when re-entering overview after data is loaded
+  if (s === 'overview' && realAnalyticsData) {
+    renderConvCharts(realAnalyticsData.convByChannel, realAnalyticsData.convByEvent);
+    renderRankings();
+  }
   if (initFns[s]) initFns[s]();
 }
 
@@ -470,12 +765,144 @@ function setTime(btn) {
   if (initFns[current]) initFns[current]();
 }
 
+function initAiCitations() {
+  // Load stored results if available
+  fetch('/api/ai-citations')
+    .then(r => r.json())
+    .then(data => {
+      if (data.latest) renderAiResults(data.latest);
+      if (data.history?.length) renderScanHistory(data.history);
+    })
+    .catch(() => {});
+}
+
+async function runAiScan() {
+  const btn = document.getElementById('scanBtn');
+  const btnText = document.getElementById('scanBtnText');
+  const progress = document.getElementById('aiProgress');
+  const progressBar = document.getElementById('aiProgressBar');
+
+  btn.disabled = true;
+  btn.classList.add('scanning');
+  btnText.textContent = 'Scanning…';
+  progress.style.display = 'block';
+  progressBar.style.width = '5%';
+
+  document.getElementById('lastScanTime').textContent = 'Scan in progress — querying 30 prompts…';
+
+  // Animate progress bar while waiting
+  let pct = 5;
+  const ticker = setInterval(() => {
+    pct = Math.min(pct + 2, 90);
+    progressBar.style.width = pct + '%';
+  }, 1500);
+
+  try {
+    const res = await fetch('/api/ai-citations', { method: 'POST' });
+    const data = await res.json();
+
+    clearInterval(ticker);
+    progressBar.style.width = '100%';
+    setTimeout(() => { progress.style.display = 'none'; }, 600);
+
+    renderAiResults(data);
+
+    // Reload history
+    const stored = await fetch('/api/ai-citations').then(r => r.json());
+    if (stored.history?.length) renderScanHistory(stored.history);
+
+  } catch (err) {
+    clearInterval(ticker);
+    document.getElementById('lastScanTime').textContent = 'Scan failed: ' + err.message;
+  } finally {
+    btn.disabled = false;
+    btn.classList.remove('scanning');
+    btnText.textContent = '▶ Run scan now';
+  }
+}
+
+function renderAiResults(data) {
+  if (!data) return;
+
+  const ts = new Date(data.timestamp);
+  document.getElementById('lastScanTime').textContent =
+    `Last scan: ${ts.toLocaleDateString('no-NO')} ${ts.toLocaleTimeString('no-NO')} — ${data.totalPrompts} prompts queried`;
+
+  // Platform card
+  document.getElementById('ai-count-claude').textContent = data.mentions || 0;
+  document.getElementById('ai-pages-claude').textContent =
+    `Pages ${data.pageCount || 0}`;
+
+  // Category bars
+  const cats = data.byCategory || {};
+  const maxCat = Math.max(...Object.values(cats), 1);
+  ['Accounting', 'Payroll', 'ERP', 'IT'].forEach(cat => {
+    const key = cat.toLowerCase();
+    const val = cats[cat] || 0;
+    const el = document.getElementById('cat-' + key);
+    const nel = document.getElementById('cat-' + key + '-n');
+    if (el) el.style.width = Math.round(val / maxCat * 100) + '%';
+    if (nel) nel.textContent = val;
+  });
+
+  // Mentions list
+  const mentions = (data.details || []).filter(d => d.mentioned);
+  const mentionsList = document.getElementById('mentionsList');
+  document.getElementById('mentionsTitle').textContent =
+    `Prompts where VIEW Group was mentioned (${mentions.length}/${data.totalPrompts})`;
+
+  if (mentions.length === 0) {
+    mentionsList.innerHTML = `<div style="color:var(--c-muted);text-align:center;padding:24px;font-size:12px;">No mentions found in this scan. Try again later — AI responses vary.</div>`;
+  } else {
+    mentionsList.innerHTML = mentions.map(m => `
+      <div class="mention-row">
+        <div class="mention-dot"></div>
+        <div style="flex:1;">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;">
+            <span class="mention-cat">${m.category}</span>
+            <span class="mention-prompt">${m.prompt}</span>
+          </div>
+          ${m.snippet ? `<div class="mention-snippet">"${m.snippet.replace(/"/g, '\'').slice(0, 180)}…"</div>` : ''}
+        </div>
+      </div>`).join('');
+  }
+}
+
 initOverview();
 </script>
 
+
 <script>
-// ── REAL DATA FETCHING ────────────────────────────────────────────────
+// ── REAL DATA ─────────────────────────────────────────────────────────
 let currentPeriod = '30d';
+let realAnalyticsData = null;
+
+function updateFunnel(ct, sessions) {
+  const visitors = sessions || 0;
+  const formViews = ct?.formViews || 0;
+  const formComp = ct?.formCompletions || 0;
+  const emailC = ct?.emailClicks || 0;
+  const phoneC = ct?.phoneClicks || 0;
+  const max = visitors || 1;
+
+  document.getElementById('f-visitors').textContent = visitors.toLocaleString();
+  document.getElementById('f-formviews').textContent = formViews.toLocaleString();
+  document.getElementById('f-formcomp').textContent = formComp.toLocaleString();
+  document.getElementById('f-email').textContent = emailC.toLocaleString();
+  document.getElementById('f-phone').textContent = phoneC.toLocaleString();
+
+  document.getElementById('f-bar1').style.width = '100%';
+  document.getElementById('f-bar1').textContent = '100%';
+  const pct = v => Math.max(4, Math.round(v/max*100));
+  document.getElementById('f-bar2').style.width = pct(formViews)+'%';
+  document.getElementById('f-bar2').textContent = pct(formViews)+'%';
+  document.getElementById('f-bar3').style.width = pct(formComp)+'%';
+  document.getElementById('f-bar3').textContent = pct(formComp)+'%';
+  document.getElementById('f-bar4').style.width = pct(emailC)+'%';
+  document.getElementById('f-bar4').textContent = pct(emailC)+'%';
+  document.getElementById('f-bar5').style.width = pct(phoneC)+'%';
+  document.getElementById('f-bar5').textContent = pct(phoneC)+'%';
+}
 
 async function fetchRealData(period) {
   currentPeriod = period;
@@ -485,55 +912,58 @@ async function fetchRealData(period) {
       fetch(`/api/search?period=${period}`).then(r => r.json()),
     ]);
 
-    // ── Analytics KPIs ──
+    realAnalyticsData = analytics;
+
+    // KPIs
     document.getElementById('kpi-sessions').textContent = analytics.sessions?.toLocaleString() || '—';
     document.getElementById('kpi-conversions').textContent = analytics.conversions?.toLocaleString() || '—';
-    document.getElementById('kpi-duration').textContent = analytics.avgDuration || '—';
-    document.getElementById('kpi-bounce').textContent = analytics.bounceRate || '—';
 
-    // ── Top pages ──
-    if (analytics.topPages?.length) {
-      document.getElementById('pagesTable').innerHTML = analytics.topPages.map(p => `
-        <tr>
-          <td>${p.page}</td>
-          <td class="mono">${p.views?.toLocaleString()}</td>
-          <td class="mono">${p.convRate}</td>
-          <td><span class="pill pill-ok">${p.source || 'Organic'}</span></td>
-        </tr>`).join('');
+    const ct = analytics.conversionTracking;
+    if (ct) {
+      document.getElementById('kpi-form-views').textContent = ct.formViews?.toLocaleString() ?? '0';
+      document.getElementById('kpi-form-completions').textContent = ct.formCompletions?.toLocaleString() ?? '0';
+      document.getElementById('kpi-email-clicks').textContent = ct.emailClicks?.toLocaleString() ?? '0';
+      document.getElementById('kpi-phone-clicks').textContent = ct.phoneClicks?.toLocaleString() ?? '0';
+      document.getElementById('kpi-newsletter').textContent = ct.newsletterSignups?.toLocaleString() ?? '0';
+      document.getElementById('kpi-contact-views').textContent = ct.contactPageViews?.toLocaleString() ?? '0';
+      updateFunnel(ct, analytics.sessions);
     }
 
-    // ── Sessions chart ──
+    // Top pages (GA4)
+    if (analytics.topPages?.length) {
+      document.getElementById('pagesTable').innerHTML = analytics.topPages.map(p => `
+        <tr><td>${p.page}</td><td class="mono">${p.views?.toLocaleString()}</td><td class="mono">${p.convRate}</td><td><span class="pill pill-ok">${p.source||'Organic'}</span></td></tr>`).join('');
+    }
+
+    // Sessions chart
     if (analytics.trend?.length) {
       const labels = analytics.trend.map(d => d.date.replace(/(\d{4})(\d{2})(\d{2})/, '$2/$3'));
-      const sessionData = analytics.trend.map(d => d.sessions);
-      const convData = analytics.trend.map(d => d.conversions);
       if (charts['sessionsChart']) {
         charts['sessionsChart'].data.labels = labels;
-        charts['sessionsChart'].data.datasets[0].data = sessionData;
-        charts['sessionsChart'].data.datasets[1].data = convData;
+        charts['sessionsChart'].data.datasets[0].data = analytics.trend.map(d => d.sessions);
+        charts['sessionsChart'].data.datasets[1].data = analytics.trend.map(d => d.conversions);
         charts['sessionsChart'].update();
       }
     }
 
-    // ── Search Console data ──
+    // Conversion charts
+    if (analytics.convByChannel || analytics.convByEvent) {
+      renderConvCharts(analytics.convByChannel, analytics.convByEvent);
+    }
+
+    // Search Console
     if (search && !search.error) {
       realSearchData = search;
-
-      // Show "Live data" badge on Keywords tab
       const badge = document.getElementById('kwDataBadge');
       if (badge) badge.style.display = '';
 
-      // If Keywords tab is currently visible, refresh it immediately
-      if (current === 'keywords') {
-        renderScKpis();
-        renderKw();
-        renderLongTail();
-        // Rebuild doughnut with real data
-        initKeywords();
-      }
+      // Update rankings on overview even if not on keywords tab
+      renderRankings();
+
+      if (current === 'keywords') initKeywords();
     }
 
-    // ── Ads (optional) ──
+    // Ads (optional)
     try {
       const ads = await fetch(`/api/ads?period=${period}`).then(r => r.json());
       if (ads.summary) {
@@ -543,22 +973,17 @@ async function fetchRealData(period) {
         if (adKpis[2]) adKpis[2].textContent = ads.summary.totalClicks?.toLocaleString();
         if (adKpis[3]) adKpis[3].textContent = ads.summary.avgCpc;
       }
-    } catch(e) { console.log('Ads not connected yet:', e.message); }
+    } catch(e) { console.log('Ads not connected yet'); }
 
-  } catch(err) {
-    console.error('API fetch error:', err);
-  }
+  } catch(err) { console.error('API fetch error:', err); }
 }
 
-// Override setTime to also fetch real data
 const _origSetTime = window.setTime;
 window.setTime = function(btn) {
   if (_origSetTime) _origSetTime(btn);
-  const period = btn.textContent.trim();
-  fetchRealData(period);
+  fetchRealData(btn.textContent.trim());
 };
 
-// Auto-fetch on load
 window.addEventListener('load', () => { fetchRealData('30d'); });
 </script>
 </body>
